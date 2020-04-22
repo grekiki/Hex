@@ -1,7 +1,7 @@
 package logika;
 
 /**
- * Možne vrednosti polj na plošči.
+ * Mozne vrednosti polj na plosci.
  */
 
 public enum Polje {
