@@ -42,7 +42,7 @@ public class Igra{
 	 * Odigraj potezo p.
 	 * 
 	 * @param p
-	 * @return true, ce je bila poteza uspeso odigrana
+	 * @return true, ce je bila poteza uspeso odigrana, drugace false
 	 */
 	public boolean odigraj(Koordinati p){
 		if(plosca[p.getX()][p.getY()]==Polje.PRAZNO){
