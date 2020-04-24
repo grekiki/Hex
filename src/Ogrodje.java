@@ -1,5 +1,6 @@
 import koordinati.Koordinati;
 import logika.Igra;
+import GUI.*;
 
 public class Ogrodje{
 
@@ -22,5 +23,12 @@ public class Ogrodje{
 		if(b.getZmagovalec()!=null) {
 			System.out.println(b.getZmagovalec());
 		}
+	
+	/////////////////////////////////////////////////////
+		Platno platno = new Platno(750, 750);
+		platno.nastaviIgro(b);
+		Okno okno1 = new Okno("Poskus 1", platno);
+		okno1.pack();
+		okno1.setVisible(true);
 	}
 }

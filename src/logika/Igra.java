@@ -9,8 +9,8 @@ public class Igra{
 	// Velikost igralne polosce je N x N.
 	public static int N=6;
 
-	// Igralno polje
-	private Polje[][] plosca;
+	// Igralno polje      to sem spremenil na public, dasem lahko platno naredil
+	public Polje[][] plosca;
 
 	// Igralec, ki je trenutno na potezi.
 	// Vrednost je poljubna, ce je igre konec (se pravi, lahko je napacna).
@@ -55,7 +55,7 @@ public class Igra{
 	}
 
 	public Igralec getZmagovalec(){
-		//Preverimo èe je zgornji rob povezan s spodnjim
+		//Preverimo ï¿½e je zgornji rob povezan s spodnjim
 		//To bo za igralca_1 ki postavlja v stringu recimo X. 
 		boolean[][]done=new boolean[N][N];
 		Queue<Koordinati> bfs=new LinkedList<Koordinati>();
@@ -87,7 +87,7 @@ public class Igra{
 				}
 			}
 		}
-		//Preverimo še za igralca 2. Na žalost moramo duplicirati kodo :(
+		//Preverimo ï¿½e za igralca 2. Na ï¿½alost moramo duplicirati kodo :(
 		bfs=new LinkedList<Koordinati>();
 		for(int row=0;row<N;row++) {
 			if(plosca[row][0]==Polje.DRUGI) {
