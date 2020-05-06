@@ -9,7 +9,7 @@ public class Igra{
 	// Velikost igralne polosce je N x N.
 	public static int N=6;
 
-	// Igralno polje      to sem spremenil na public, dasem lahko platno naredil
+	// Igralno polje      to sem spremenil na public, da sem lahko platno naredil
 	public Polje[][] plosca;
 
 	// Igralec, ki je trenutno na potezi.
@@ -53,8 +53,13 @@ public class Igra{
 			return false;
 		}
 	}
+	
+	public final ArrayList<Koordinati> zmagovalnaPolja = new ArrayList<Koordinati>();
 
 	public Igralec getZmagovalec(){
+		
+		zmagovalnaPolja.clear();
+		
 		//Preverimo �e je zgornji rob povezan s spodnjim
 		//To bo za igralca_1 ki postavlja v stringu recimo X. 
 		boolean[][]done=new boolean[N][N];
@@ -62,12 +67,17 @@ public class Igra{
 		for(int col=0;col<N;col++) {
 			if(plosca[0][col]==Polje.PRVI) {
 				bfs.add(new Koordinati(0,col));
+				
+				zmagovalnaPolja.add(new Koordinati(0,col));
+				
+				
 				done[0][col]=true;
 			}
 		}
 		while(!bfs.isEmpty()) {
 			Koordinati k=bfs.poll();
 			if(k.getX()==N-1) {
+				urediPoljaCol();
 				return Igralec.PRVI;
 			}
 			int[]dx= {0,1,1,0,-1,-1};
@@ -80,6 +90,9 @@ public class Igra{
 				try {
 					if(plosca[x2][y2]==Polje.PRVI&&!done[x2][y2]) {
 						bfs.add(new Koordinati(x2,y2));
+						
+						zmagovalnaPolja.add(new Koordinati(x2, x2));
+						
 						done[x2][y2]=true;
 					}
 				}catch(Exception e) {
@@ -132,4 +145,55 @@ public class Igra{
 		}
 		return sb.toString();
 	}
+
+	public Stanje getStanje() {
+		Igralec zmagovalec = getZmagovalec();
+		if (zmagovalec == Igralec.PRVI) return Stanje.ZMAGA_PRVI;
+		else if (zmagovalec == Igralec.DRUGI) return Stanje.ZMAGA_DRUGI;
+		else {
+			for (int i = 0; i < plosca.length; i++) {
+				for (int j = 0; j < plosca[0].length; j++) {
+					if (plosca[i][j] == Polje.PRAZNO) return Stanje.V_TEKU;
+				}
+			}
+			return Stanje.NEODLOCENO;
+		}
+	}
+	private void urediPoljaCol() {
+		ArrayList<ArrayList<Koordinati>> pomozen = new ArrayList<ArrayList<Koordinati>>();
+		for (Koordinati k : zmagovalnaPolja) {
+			if (k.getX() == 0) {
+				ArrayList<Koordinati> nov = new ArrayList<Koordinati>();
+				nov.add(new Koordinati(k.getX(), k.getY()));
+				pomozen.add(nov);
+			}
+			else {
+				for (ArrayList<Koordinati> a : pomozen) {
+					if (staSkupaj(a.get(a.size() - 1), k)) a.add(new Koordinati(k.getX(), k.getY()));
+				}
+			}
+		}
+		for (ArrayList<Koordinati> a : pomozen) {
+			if (a.get(a.size() - 1).getX() == N-1) {
+				zmagovalnaPolja.clear();
+				for (Koordinati k : a) zmagovalnaPolja.add(new Koordinati(k.getX(), k.getY()));
+				break;
+			}
+		}
+		
+	}
+	private boolean staSkupaj(Koordinati k1, Koordinati k2) {
+		int x1 = k1.getX();
+		int y1 = k1.getY();
+		int x2 = k2.getX();
+		int y2 = k2.getY();
+		int[]dx= {0,1,1,0,-1,-1};
+		int[]dy= {1,0,-1,-1,-1,0};
+		int x = x2 - x1;
+		int y = y2 - y1;
+		for(int i = 0; i < dx.length; i++) {
+			if (x == dx[i] && y == dy[i]) return true;
+		}
+		return false;
+		}
 }
