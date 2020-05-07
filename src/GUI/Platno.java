@@ -1,12 +1,16 @@
 package GUI;
 
 import javax.swing.*;
+
+
+
 import java.awt.*;
 import logika.Igra;
 import logika.Polje;
+import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class Platno extends JPanel {
+public class Platno extends JPanel implements MouseListener {
 	
 	protected int sirina;
 	protected int visina;
@@ -18,6 +22,9 @@ public class Platno extends JPanel {
 	protected Color barvaRoba;
 	protected Color barvaPrazno;
 	protected int debelinaRoba;
+	protected int zunanjiPolmer;
+	protected int notranjiPolmer;
+	protected int padding;
 	
 	public Platno(int sirina, int visina) {
 		this.sirina = sirina;
@@ -29,6 +36,7 @@ public class Platno extends JPanel {
 		this.barvaPrazno = Color.white;
 		this.setPreferredSize(getPrefferedSize());
 		this.setBackground(Color.white);
+		this.addMouseListener(this);
 	}
 	
 	public void nastaviIgro (Igra igra) {
@@ -49,19 +57,19 @@ public class Platno extends JPanel {
 		
 		int priporocenaSirina = Math.min(this.sirina, (int) this.visina*3/2);
 		
-		System.out.println(priporocenaSirina);
+		//System.out.println(priporocenaSirina);
 		
 		
 		// samo zunanji, debelinaRoba in padding se spreminjata
 		//int zunanji = 40; //odvisen naj bo od velikosti platna
-		int zunanji = 26;
-		int padding = 60; // 100 padding je razmik do prvega šestkotnika.
-		int debelinaRoba = 4;
+		zunanjiPolmer = 40;
+		padding = 80; // 100 padding je razmik do prvega šestkotnika.
+		debelinaRoba = 6;
 		
-		System.out.println("zunanji: " + zunanji);
-		System.out.println("padding: " + padding);
+		//System.out.println("zunanji: " + zunanjiPolmer);
+		//System.out.println("padding: " + padding);
 		
-		int notranji = (int) Math.round(zunanji * Math.sqrt(3) / 2);  // polmer šestkotniku očrtane in včrtane krožnice
+		notranjiPolmer = (int) Math.round(zunanjiPolmer * Math.sqrt(3) / 2);  // polmer šestkotniku očrtane in včrtane krožnice
 		Color barva;
 		
 		/////////////// rob plošče
@@ -76,51 +84,51 @@ public class Platno extends JPanel {
 		v[0] = 0.5 / norma;
 		v[1] = (Math.sqrt(3) / 2) / norma;
 		
-		int x1 = (int) Math.round(padding + (2 * a + 1) * notranji + (a * notranji));
-		int y1 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji );
+		int x1 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer));
+		int y1 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x1, y1, 10, 10);
-		int x2 = (int) Math.round(padding + (2 * b + 1) * notranji + (a * notranji));
-		int y2 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji );
+		int x2 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer));
+		int y2 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x2, y2, 10, 10);
-		int x3 = (int) Math.round(padding + (2 * b + 1) * notranji + (b * notranji));
-		int y3 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji );
+		int x3 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer));
+		int y3 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x3, y3, 10, 10);
-		int x4 = (int) Math.round(padding + (2 * a + 1) * notranji + (b * notranji));
-		int y4 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji );
+		int x4 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer));
+		int y4 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x4, y4, 10, 10);
 		
-		int x12 = (int) Math.round(padding + (2 * a + 1) * notranji + (a * notranji) - 2 * notranji * v[0]);
-		int y12 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji - 2 * notranji * v[1]);
+		int x12 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
+		int y12 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1]);
 		//g2.fillOval(x12, y12, 10, 10);
-		int x13 = (int) Math.round(padding + (2 * a + 1) * notranji + (a * notranji) - 2 * notranji);
-		int y13 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji );
+		int x13 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer);
+		int y13 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x13, y13, 10, 10);
-		int x14 = (int) Math.round(padding + (2 * a + 1) * notranji + (a * notranji) - 2 * notranji + notranji * v[0]);
-		int y14 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji - notranji * v[1]);
+		int x14 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer + notranjiPolmer * v[0]);
+		int y14 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - notranjiPolmer * v[1]);
 		//g2.fillOval(x14, y14, 10, 10);
 
-		int x21 = (int) Math.round(padding + (2 * b + 1) * notranji + (a * notranji)+ 2 * notranji);
-		int y21 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji );
+		int x21 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer)+ 2 * notranjiPolmer);
+		int y21 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x21, y21, 10, 10);
-		int x23 = (int) Math.round(padding + (2 * b + 1) * notranji + (a * notranji) + 2 * notranji * v[0] );
-		int y23 = (int) Math.round(padding + zunanji + a * 1.5 * zunanji - 2 * notranji * v[1] );
+		int x23 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer) + 2 * notranjiPolmer * v[0] );
+		int y23 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1] );
 		//g2.fillOval(x23, y23, 10, 10);
 		
-		int x31 = (int) Math.round(padding + (2 * b + 1) * notranji + (b * notranji) + 2 * notranji * v[0]);
-		int y31 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji + 2 * notranji * v[1]);
+		int x31 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0]);
+		int y31 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1]);
 		//g2.fillOval(x31, y31, 10, 10);		
-		int x32 = (int) Math.round(padding + (2 * b + 1) * notranji + (b * notranji) + 2 * notranji);
-		int y32 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji );
+		int x32 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer);
+		int y32 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x32, y32, 10, 10);
-		int x34 = (int) Math.round(padding + (2 * b + 1) * notranji + (b * notranji) + 2 * notranji * v[0] + notranji * v[0]);
-		int y34 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji + 2 * notranji * v[1] - notranji * v[1]);
+		int x34 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0] + notranjiPolmer * v[0]);
+		int y34 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] - notranjiPolmer * v[1]);
 		//g2.fillOval(x34, y34, 10, 10);
 		
-		int x41 = (int) Math.round(padding + (2 * a + 1) * notranji + (b * notranji) - 2 * notranji);
-		int y41 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji );
+		int x41 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer);
+		int y41 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x41, y41, 10, 10);
-		int x42 = (int) Math.round(padding + (2 * a + 1) * notranji + (b * notranji) - 2 * notranji * v[0]);
-		int y42 = (int) Math.round(padding + zunanji + b * 1.5 * zunanji + 2 * notranji * v[1] );
+		int x42 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
+		int y42 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] );
 		//g2.fillOval(x42, y42, 10, 10);
 			
 		int r1 = (int) Math.round(x12 - debelinaRoba * v[0]);
@@ -169,12 +177,12 @@ public class Platno extends JPanel {
 		
 		for (int i = 0; i < this.igra.plosca.length; i++) {
 			for (int j = 0; j < this.igra.plosca[0].length; j++) {
-				int x = (int) Math.round(padding + (2 * j + 1) * notranji + (i * notranji)); // vodoravno
-				int y = (int) Math.round(padding + zunanji + i * 1.5 * zunanji ); // navpično
+				int x = (int) Math.round(padding + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer)); // vodoravno
+				int y = (int) Math.round(padding + zunanjiPolmer + i * 1.5 * zunanjiPolmer ); // navpično
 				if (igra.plosca[i][j] == Polje.PRVI) barva = this.barvaIgralca1;
 				else if (igra.plosca[i][j] == Polje.DRUGI) barva = this.barvaIgralca2;
 				else barva = this.barvaPrazno; // dodati še za zmagovalno vrstico
-				sestkotnik(y, x, (int) Math.round(zunanji + debelinaRoba), debelinaRoba, g2, this.barvaRoba, barva);
+				sestkotnik(y, x, (int) Math.round(zunanjiPolmer + debelinaRoba), debelinaRoba, g2, this.barvaRoba, barva);
 			}
 		}		
 	}
@@ -199,6 +207,57 @@ public class Platno extends JPanel {
 		g.fillPolygon(xKoordinate2, yKoordinate2, 6);
 	}
 	
+	private Polygon getHex(int x, int y, int r) {
+		int[] xKoordinate = new int[6];
+		int[] yKoordinate = new int[6];
+		for (int i = 0; i < 6; i++) {
+			   yKoordinate[i] = (int) Math.round(x + r * Math.cos(i * 2.0 * Math.PI / 6));
+			   xKoordinate[i] = (int) Math.round(y + r * Math.sin(i * 2.0 * Math.PI / 6));
+		}
+		return new Polygon(xKoordinate, yKoordinate, 6);
+	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+//		if (Vodja.clovekNaVrsti) {
+			int x = e.getX();
+			int y = e.getY();
+			for (int i = 0; i < this.igra.plosca.length; i++) {
+				for (int j = 0; j < this.igra.plosca[0].length; j++) {
+					int sx = (int) Math.round(padding + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer));
+					int sy = (int) Math.round(padding + zunanjiPolmer + i * 1.5 * zunanjiPolmer );
+					
+					
+				if (getHex(sy, sx, notranjiPolmer).contains(new Point(x, y))) {
+					System.out.println("zadel si " + i + ", " + j + ".");
+					//this.igra.odigraj(new Koordinati(i, y));
+
+					break;
+				}
+				}
+			}
+			repaint();
+	}
+	
+	
+	
+	@Override
+	public void mousePressed(MouseEvent e) {		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {		
+	}
+	
+	
+	
 
 }
