@@ -24,7 +24,7 @@ public class Ogrodje{
 			System.out.println(b.getZmagovalec());
 		}
 		System.out.println(b.getStanje());
-		System.out.println(b.zmagovalnaPolja);
+//		System.out.println(b.zmagovalnaPolja);
 		
 	
 		
@@ -42,7 +42,7 @@ public class Ogrodje{
 		c.odigraj(new Koordinati(3,2));
 		
 		System.out.println(c.getStanje());
-		System.out.println(c.zmagovalnaPolja);
+//		System.out.println(c.zmagovalnaPolja);
 		
 	// želimo si 
 	//[Koordinati [x=0, y=2], Koordinati [x=1, y=1], Koordinati [x=2, y=1], Koordinati [x=2, y=2], Koordinati [x=3, y=2]]
