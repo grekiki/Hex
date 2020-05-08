@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+
 
 @SuppressWarnings("serial")
 public class Okno extends JFrame implements ActionListener {
@@ -30,7 +35,7 @@ public class Okno extends JFrame implements ActionListener {
 	public Okno(String ime, Platno platno) {
 		this.setTitle(ime);
 		this.platno = platno;
-		this.add(platno, BorderLayout.CENTER);
+		//this.add(platno, BorderLayout.CENTER);
 		this.setVisible(true);
 		
 		//meni
@@ -91,7 +96,35 @@ public class Okno extends JFrame implements ActionListener {
 		barvaDrugega = new JMenuItem("Barva igralca 2");
 		nastavitve.add(barvaDrugega);
 		barvaDrugega.addActionListener(this);
+	
+		/////////////////////////////////////
 		
+		// igralno polje
+		setLayout(new GridBagLayout());
+		JPanel wrapperPanel = new JPanel(new GridBagLayout());
+		wrapperPanel.setBackground(Color.white);
+		wrapperPanel.add(platno);
+
+		GridBagConstraints polje_layout = new GridBagConstraints();
+		polje_layout.gridx = 0;
+		polje_layout.gridy = 0;
+		polje_layout.fill = GridBagConstraints.BOTH;
+		polje_layout.weightx = 1.0;
+		polje_layout.weighty = 1.0;
+		this.add(wrapperPanel, polje_layout);
+		
+		// statusna vrstica za sporočila
+		status = new JLabel();
+		status.setFont(new Font(status.getFont().getName(),
+							    status.getFont().getStyle(),
+							    20));
+		GridBagConstraints status_layout = new GridBagConstraints();
+		status_layout.gridx = 0;
+		status_layout.gridy = 1;
+		status_layout.anchor = GridBagConstraints.CENTER;
+		getContentPane().add(status, status_layout);
+		
+		status.setText("Izberite igro!");
 		
 	}
 	@Override

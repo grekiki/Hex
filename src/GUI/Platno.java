@@ -55,19 +55,21 @@ public class Platno extends JPanel implements MouseListener {
 		Graphics2D g2 = (Graphics2D) g;
 		/////
 		
-		int priporocenaSirina = Math.min(this.sirina, (int) this.visina*3/2);
+		int priporocenaSirina = Math.min(getWidth(), (int) getHeight()*3/2);
 		
-		//System.out.println(priporocenaSirina);
+		System.out.println(priporocenaSirina);
 		
 		
 		// samo zunanji, debelinaRoba in padding se spreminjata
 		//int zunanji = 40; //odvisen naj bo od velikosti platna
-		zunanjiPolmer = 40;
-		padding = 80; // 100 padding je razmik do prvega šestkotnika.
+		zunanjiPolmer = (int) Math.abs(priporocenaSirina / this.igra.N / 3);
+		padding = (int) Math.abs(priporocenaSirina / 10); // 100 padding je razmik do prvega šestkotnika.
 		debelinaRoba = 6;
 		
-		//System.out.println("zunanji: " + zunanjiPolmer);
-		//System.out.println("padding: " + padding);
+		System.out.println("zunanji: " + zunanjiPolmer);
+		System.out.println("noranji: " + notranjiPolmer);
+		System.out.println("padding: " + padding);
+		System.out.println("debelinaRoba: " + debelinaRoba);
 		
 		notranjiPolmer = (int) Math.round(zunanjiPolmer * Math.sqrt(3) / 2);  // polmer šestkotniku očrtane in včrtane krožnice
 		Color barva;
@@ -182,6 +184,12 @@ public class Platno extends JPanel implements MouseListener {
 				if (igra.plosca[i][j] == Polje.PRVI) barva = this.barvaIgralca1;
 				else if (igra.plosca[i][j] == Polje.DRUGI) barva = this.barvaIgralca2;
 				else barva = this.barvaPrazno; // dodati še za zmagovalno vrstico
+				// test
+				if (i == 0 && j == 0) System.out.println("x0 = " + y + ", y0 = " + x + ",");
+				else if (i == 0 && j == this.igra.plosca.length - 1) System.out.println("x0 = " + y + ", yN = " + x + ",");
+				else if (i == this.igra.plosca.length - 1 && j == 0) System.out.println("xN = " + y + ", y0 = " + x + ",");
+				else if (i == this.igra.plosca.length - 1 && j == this.igra.plosca.length - 1) System.out.println("xN = " + y + ", yN = " + x + ",");
+				
 				sestkotnik(y, x, (int) Math.round(zunanjiPolmer + debelinaRoba), debelinaRoba, g2, this.barvaRoba, barva);
 			}
 		}		
