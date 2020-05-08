@@ -35,7 +35,6 @@ public class Okno extends JFrame implements ActionListener {
 	public Okno(String ime, Platno platno) {
 		this.setTitle(ime);
 		this.platno = platno;
-		//this.add(platno, BorderLayout.CENTER);
 		this.setVisible(true);
 		
 		//meni
@@ -101,9 +100,9 @@ public class Okno extends JFrame implements ActionListener {
 		
 		// igralno polje
 		setLayout(new GridBagLayout());
-		JPanel wrapperPanel = new JPanel(new GridBagLayout());
-		wrapperPanel.setBackground(Color.white);
-		wrapperPanel.add(platno);
+//		JPanel wrapperPanel = new JPanel(new GridBagLayout());
+//		wrapperPanel.setBackground(Color.white);
+//		wrapperPanel.add(platno);
 
 		GridBagConstraints polje_layout = new GridBagConstraints();
 		polje_layout.gridx = 0;
@@ -111,7 +110,7 @@ public class Okno extends JFrame implements ActionListener {
 		polje_layout.fill = GridBagConstraints.BOTH;
 		polje_layout.weightx = 1.0;
 		polje_layout.weighty = 1.0;
-		this.add(wrapperPanel, polje_layout);
+		this.add(platno, polje_layout);
 		
 		// statusna vrstica za sporočila
 		status = new JLabel();

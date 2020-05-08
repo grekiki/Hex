@@ -24,7 +24,8 @@ public class Platno extends JPanel implements MouseListener {
 	protected int debelinaRoba;
 	protected int zunanjiPolmer;
 	protected int notranjiPolmer;
-	protected int padding;
+	protected int paddingx;
+	protected int paddingy;
 	
 	public Platno(int sirina, int visina) {
 		this.sirina = sirina;
@@ -57,18 +58,25 @@ public class Platno extends JPanel implements MouseListener {
 		
 		int priporocenaSirina = Math.min(getWidth(), (int) getHeight()*3/2);
 		
-		System.out.println(priporocenaSirina);
-		
-		
+		System.out.println("sirina: " + getWidth() + ", visina: " + getHeight());
+		int sx = getWidth() / 2;
+		int sy = getHeight() / 2;
+		//x0 = paddingx + notranji
+		//y0 = paddingy + zunanji
 		// samo zunanji, debelinaRoba in padding se spreminjata
 		//int zunanji = 40; //odvisen naj bo od velikosti platna
-		zunanjiPolmer = (int) Math.abs(priporocenaSirina / this.igra.N / 3);
-		padding = (int) Math.abs(priporocenaSirina / 10); // 100 padding je razmik do prvega šestkotnika.
+		zunanjiPolmer = (priporocenaSirina / ((this.igra.N * 3 / 2) + 4)) / 2;
+		notranjiPolmer = (int) Math.round(zunanjiPolmer * Math.sqrt(3) / 2);  // polmer šestkotniku očrtane in včrtane krožnice
 		debelinaRoba = 6;
+		paddingx = sx - (this.igra.N * 3 / 2) * notranjiPolmer;
+		paddingy = sy - (this.igra.N / 2) * (zunanjiPolmer + notranjiPolmer);
+		
+		
 		
 		System.out.println("zunanji: " + zunanjiPolmer);
 		System.out.println("noranji: " + notranjiPolmer);
-		System.out.println("padding: " + padding);
+		System.out.println("paddingx: " + paddingx);
+		System.out.println("paddingy: " + paddingx);
 		System.out.println("debelinaRoba: " + debelinaRoba);
 		
 		notranjiPolmer = (int) Math.round(zunanjiPolmer * Math.sqrt(3) / 2);  // polmer šestkotniku očrtane in včrtane krožnice
@@ -86,51 +94,51 @@ public class Platno extends JPanel implements MouseListener {
 		v[0] = 0.5 / norma;
 		v[1] = (Math.sqrt(3) / 2) / norma;
 		
-		int x1 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer));
-		int y1 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
+		int x1 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer));
+		int y1 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x1, y1, 10, 10);
-		int x2 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer));
-		int y2 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
+		int x2 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer));
+		int y2 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x2, y2, 10, 10);
-		int x3 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer));
-		int y3 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
+		int x3 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer));
+		int y3 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x3, y3, 10, 10);
-		int x4 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer));
-		int y4 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
+		int x4 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer));
+		int y4 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x4, y4, 10, 10);
 		
-		int x12 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
-		int y12 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1]);
+		int x12 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
+		int y12 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1]);
 		//g2.fillOval(x12, y12, 10, 10);
-		int x13 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer);
-		int y13 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
+		int x13 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer);
+		int y13 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x13, y13, 10, 10);
-		int x14 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer + notranjiPolmer * v[0]);
-		int y14 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - notranjiPolmer * v[1]);
+		int x14 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (a * notranjiPolmer) - 2 * notranjiPolmer + notranjiPolmer * v[0]);
+		int y14 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer - notranjiPolmer * v[1]);
 		//g2.fillOval(x14, y14, 10, 10);
 
-		int x21 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer)+ 2 * notranjiPolmer);
-		int y21 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
+		int x21 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer)+ 2 * notranjiPolmer);
+		int y21 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x21, y21, 10, 10);
-		int x23 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer) + 2 * notranjiPolmer * v[0] );
-		int y23 = (int) Math.round(padding + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1] );
+		int x23 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (a * notranjiPolmer) + 2 * notranjiPolmer * v[0] );
+		int y23 = (int) Math.round(paddingy + zunanjiPolmer + a * 1.5 * zunanjiPolmer - 2 * notranjiPolmer * v[1] );
 		//g2.fillOval(x23, y23, 10, 10);
 		
-		int x31 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0]);
-		int y31 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1]);
+		int x31 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0]);
+		int y31 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1]);
 		//g2.fillOval(x31, y31, 10, 10);		
-		int x32 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer);
-		int y32 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
+		int x32 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer);
+		int y32 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x32, y32, 10, 10);
-		int x34 = (int) Math.round(padding + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0] + notranjiPolmer * v[0]);
-		int y34 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] - notranjiPolmer * v[1]);
+		int x34 = (int) Math.round(paddingx + (2 * b + 1) * notranjiPolmer + (b * notranjiPolmer) + 2 * notranjiPolmer * v[0] + notranjiPolmer * v[0]);
+		int y34 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] - notranjiPolmer * v[1]);
 		//g2.fillOval(x34, y34, 10, 10);
 		
-		int x41 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer);
-		int y41 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
+		int x41 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer);
+		int y41 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer );
 		//g2.fillOval(x41, y41, 10, 10);
-		int x42 = (int) Math.round(padding + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
-		int y42 = (int) Math.round(padding + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] );
+		int x42 = (int) Math.round(paddingx + (2 * a + 1) * notranjiPolmer + (b * notranjiPolmer) - 2 * notranjiPolmer * v[0]);
+		int y42 = (int) Math.round(paddingy + zunanjiPolmer + b * 1.5 * zunanjiPolmer + 2 * notranjiPolmer * v[1] );
 		//g2.fillOval(x42, y42, 10, 10);
 			
 		int r1 = (int) Math.round(x12 - debelinaRoba * v[0]);
@@ -179,8 +187,8 @@ public class Platno extends JPanel implements MouseListener {
 		
 		for (int i = 0; i < this.igra.plosca.length; i++) {
 			for (int j = 0; j < this.igra.plosca[0].length; j++) {
-				int x = (int) Math.round(padding + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer)); // vodoravno
-				int y = (int) Math.round(padding + zunanjiPolmer + i * 1.5 * zunanjiPolmer ); // navpično
+				int x = (int) Math.round(paddingx + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer)); // vodoravno
+				int y = (int) Math.round(paddingy + zunanjiPolmer + i * 1.5 * zunanjiPolmer ); // navpično
 				if (igra.plosca[i][j] == Polje.PRVI) barva = this.barvaIgralca1;
 				else if (igra.plosca[i][j] == Polje.DRUGI) barva = this.barvaIgralca2;
 				else barva = this.barvaPrazno; // dodati še za zmagovalno vrstico
@@ -232,8 +240,8 @@ public class Platno extends JPanel implements MouseListener {
 			int y = e.getY();
 			for (int i = 0; i < this.igra.plosca.length; i++) {
 				for (int j = 0; j < this.igra.plosca[0].length; j++) {
-					int sx = (int) Math.round(padding + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer));
-					int sy = (int) Math.round(padding + zunanjiPolmer + i * 1.5 * zunanjiPolmer );
+					int sx = (int) Math.round(paddingx + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer));
+					int sy = (int) Math.round(paddingy + zunanjiPolmer + i * 1.5 * zunanjiPolmer );
 					
 					
 				if (getHex(sy, sx, notranjiPolmer).contains(new Point(x, y))) {

@@ -50,7 +50,7 @@ public class Ogrodje{
 		
 	/////////////////////////////////////////////////////
 		
-		Igra d = new Igra(7);
+		Igra d = new Igra(11);
 		
 		Platno platno = new Platno(900, 600);
 		platno.nastaviIgro(d);
