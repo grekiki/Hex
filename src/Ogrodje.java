@@ -1,4 +1,4 @@
-import koordinati.Koordinati;
+import splosno.Koordinati;
 import logika.Igra;
 import GUI.*;
 
@@ -20,9 +20,6 @@ public class Ogrodje{
 			b.odigraj(new Koordinati(i,1));
 		}
 		System.out.println(b);
-		if(b.getZmagovalec()!=null) {
-			System.out.println(b.getZmagovalec());
-		}
 		System.out.println(b.getStanje());
 //		System.out.println(b.zmagovalnaPolja);
 		
@@ -40,11 +37,11 @@ public class Ogrodje{
 		c.odigraj(new Koordinati(2,2));
 		c.odigraj(new Koordinati(0,3));
 		c.odigraj(new Koordinati(3,2));
-		
+		System.out.println(c);
 		System.out.println(c.getStanje());
 //		System.out.println(c.zmagovalnaPolja);
 		
-	// želimo si 
+	// zelimo si 
 	//[Koordinati [x=0, y=2], Koordinati [x=1, y=1], Koordinati [x=2, y=1], Koordinati [x=2, y=2], Koordinati [x=3, y=2]]
 		
 		
@@ -53,7 +50,7 @@ public class Ogrodje{
 		Igra d = new Igra(11);
 		
 		Platno platno = new Platno(900, 600);
-		platno.nastaviIgro(d);
+		platno.nastaviIgro(c);
 		Okno okno1 = new Okno("Poskus 1", platno);
 		okno1.pack();
 		okno1.setVisible(true);

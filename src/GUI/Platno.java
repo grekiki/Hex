@@ -189,8 +189,8 @@ public class Platno extends JPanel implements MouseListener {
 			for (int j = 0; j < this.igra.plosca[0].length; j++) {
 				int x = (int) Math.round(paddingx + (2 * j + 1) * notranjiPolmer + (i * notranjiPolmer)); // vodoravno
 				int y = (int) Math.round(paddingy + zunanjiPolmer + i * 1.5 * zunanjiPolmer ); // navpično
-				if (igra.plosca[i][j] == Polje.PRVI) barva = this.barvaIgralca1;
-				else if (igra.plosca[i][j] == Polje.DRUGI) barva = this.barvaIgralca2;
+				if (igra.plosca[j][i] == Polje.PRVI) barva = this.barvaIgralca1;
+				else if (igra.plosca[j][i] == Polje.DRUGI) barva = this.barvaIgralca2;
 				else barva = this.barvaPrazno; // dodati še za zmagovalno vrstico
 				// test
 				if (i == 0 && j == 0) System.out.println("x0 = " + y + ", y0 = " + x + ",");
