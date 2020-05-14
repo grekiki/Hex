@@ -12,7 +12,6 @@ public class Inteligenca extends splosno.KdoIgra{
 		super(ime);
 		this.ime=ime;
 		System.out.println("Narejena je inteligenca "+ime);
-
 	}
 	public Koordinati izberiPotezo(Igra igra){
 		ArrayList<Koordinati> možnePoteze=new ArrayList<Koordinati>();

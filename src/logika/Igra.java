@@ -56,13 +56,13 @@ public class Igra{
 
 //	public final ArrayList<Koordinati> zmagovalnaPolja = new ArrayList<Koordinati>();
 	public ArrayList<Koordinati> zmagovalnaPot() throws Exception{
-		if(getStanje()==Stanje.V_TEKU) {
+		if(getStanje()==Stanje.V_TEKU){
 			throw new Exception("Nihče ni zmagal, zmagovalna pot ne more obstajati");
-		}else {
+		}else{
 			Koordinati[][] prev=new Koordinati[N][N];
 			Queue<Koordinati> bfs=new LinkedList<Koordinati>();
-			for(int x=0;x<N;x++) {
-				if(plosca[x][0]==Polje.PRVI) {
+			for(int x=0;x<N;x++){
+				if(plosca[x][0]==Polje.PRVI){
 					bfs.add(new Koordinati(x,0));
 				}
 			}
@@ -71,10 +71,10 @@ public class Igra{
 				if(k.getY()==N-1){
 //					urediPoljaCol();
 					ArrayList<Koordinati> ans=new ArrayList<Koordinati>();
-					while(true) {
+					while(true){
 						ans.add(k);
 						k=prev[k.getX()][k.getY()];
-						if(k.getY()==0) {
+						if(k.getY()==0){
 							ans.add(k);
 							break;
 						}
@@ -112,10 +112,10 @@ public class Igra{
 				Koordinati k=bfs.poll();
 				if(k.getX()==N-1){
 					ArrayList<Koordinati> ans=new ArrayList<Koordinati>();
-					while(true) {
+					while(true){
 						ans.add(k);
 						k=prev[k.getX()][k.getY()];
-						if(k.getX()==0) {
+						if(k.getX()==0){
 							ans.add(k);
 							break;
 						}
@@ -157,7 +157,7 @@ public class Igra{
 
 //				zmagovalnaPolja.add(new Koordinati(0,col));
 
-				done[0][col]=true;
+				done[col][0]=true;
 			}
 		}
 		while(!bfs.isEmpty()){
@@ -234,6 +234,7 @@ public class Igra{
 
 	public Stanje getStanje(){
 		Igralec zmagovalec=getZmagovalec();
+		System.out.println(zmagovalec);
 		if(zmagovalec==Igralec.PRVI)
 			return Stanje.ZMAGA_PRVI;
 		else if(zmagovalec==Igralec.DRUGI)

@@ -123,5 +123,8 @@ import java.awt.GridBagLayout;
 	@Override public void actionPerformed(ActionEvent e){
 		//TODO
 	}
+	public void osveziGUI(){
+		platno.repaint();
+	}
 
 }
