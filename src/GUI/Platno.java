@@ -7,11 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 import logika.Igra;
 import logika.Polje;
+import vodja.Vodja;
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class Platno extends JPanel implements MouseListener {
-	
+	public Vodja vodja;
 	protected int sirina;
 	protected int visina;
 	protected Igra igra;
@@ -35,6 +37,7 @@ public class Platno extends JPanel implements MouseListener {
 		this.barvaIgralca2 = Color.blue;
 		this.barvaRoba = Color.black;
 		this.barvaPrazno = Color.white;
+		this.vodja=new Vodja();
 		this.setPreferredSize(getPrefferedSize());
 		this.setBackground(Color.white);
 		this.addMouseListener(this);

@@ -1,5 +1,7 @@
 package vodja;
 
 public class Vodja {
-	//TODO
+	public Vodja() {
+		
+	}
 }

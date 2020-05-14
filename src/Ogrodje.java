@@ -1,5 +1,8 @@
 import splosno.Koordinati;
 import logika.Igra;
+
+import javax.swing.WindowConstants;
+
 import GUI.*;
 
 public class Ogrodje{
@@ -51,9 +54,10 @@ public class Ogrodje{
 		Igra d = new Igra(11);
 		
 		Platno platno = new Platno(900, 600);
-		platno.nastaviIgro(c);
+		platno.nastaviIgro(d);
 		Okno okno1 = new Okno("Poskus 1", platno);
 		okno1.pack();
+		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);
 	}
 }
