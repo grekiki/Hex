@@ -55,7 +55,94 @@ public class Igra{
 	}
 
 //	public final ArrayList<Koordinati> zmagovalnaPolja = new ArrayList<Koordinati>();
+	public ArrayList<Koordinati> zmagovalnaPot() throws Exception{
+		if(getStanje()==Stanje.V_TEKU) {
+			throw new Exception("Nihče ni zmagal, zmagovalna pot ne more obstajati");
+		}else {
+			Koordinati[][] prev=new Koordinati[N][N];
+			Queue<Koordinati> bfs=new LinkedList<Koordinati>();
+			for(int x=0;x<N;x++) {
+				if(plosca[x][0]==Polje.PRVI) {
+					bfs.add(new Koordinati(x,0));
+				}
+			}
+			while(!bfs.isEmpty()){
+				Koordinati k=bfs.poll();
+				if(k.getY()==N-1){
+//					urediPoljaCol();
+					ArrayList<Koordinati> ans=new ArrayList<Koordinati>();
+					while(true) {
+						ans.add(k);
+						k=prev[k.getX()][k.getY()];
+						if(k.getY()==0) {
+							ans.add(k);
+							break;
+						}
+					}
+					return ans;
+				}
+				int[] dx={0,1,1,0,-1,-1};
+				int[] dy={1,0,-1,-1,-1,0};
+				int x=k.getX();
+				int y=k.getY();
+				for(int dir=0;dir<dx.length;dir++){
+					int x2=x+dx[dir];
+					int y2=y+dy[dir];
+					try{
+						if(plosca[x2][y2]==Polje.PRVI&&prev[x2][y2]==null){
+							bfs.add(new Koordinati(x2,y2));
 
+//							zmagovalnaPolja.add(new Koordinati(x2, x2));
+
+							prev[x2][y2]=k;
+						}
+					}catch(Exception e){
+
+					}
+				}
+			}
+			prev=new Koordinati[N][N];
+			bfs=new LinkedList<Koordinati>();
+			for(int row=0;row<N;row++){
+				if(plosca[0][row]==Polje.DRUGI){
+					bfs.add(new Koordinati(0,row));
+				}
+			}
+			while(!bfs.isEmpty()){
+				Koordinati k=bfs.poll();
+				if(k.getX()==N-1){
+					ArrayList<Koordinati> ans=new ArrayList<Koordinati>();
+					while(true) {
+						ans.add(k);
+						k=prev[k.getX()][k.getY()];
+						if(k.getX()==0) {
+							ans.add(k);
+							break;
+						}
+					}
+					return ans;
+				}
+				int[] dx={0,1,1,0,-1,-1};
+				int[] dy={1,0,-1,-1,-1,0};
+				int x=k.getX();
+				int y=k.getY();
+				for(int dir=0;dir<dx.length;dir++){
+					int x2=x+dx[dir];
+					int y2=y+dy[dir];
+					try{
+						if(plosca[x2][y2]==Polje.DRUGI&&prev[x2][y2]==null){
+							bfs.add(new Koordinati(x2,y2));
+							prev[x2][y2]=k;
+						}
+					}catch(Exception e){
+
+					}
+				}
+			}
+		}
+		System.out.println("Napaka pri analizi zmagovalca");
+		return null;
+	}
 	public Igralec getZmagovalec(){
 
 //		zmagovalnaPolja.clear();
@@ -65,8 +152,8 @@ public class Igra{
 		boolean[][] done=new boolean[N][N];
 		Queue<Koordinati> bfs=new LinkedList<Koordinati>();
 		for(int col=0;col<N;col++){
-			if(plosca[0][col]==Polje.PRVI){
-				bfs.add(new Koordinati(0,col));
+			if(plosca[col][0]==Polje.PRVI){
+				bfs.add(new Koordinati(col,0));
 
 //				zmagovalnaPolja.add(new Koordinati(0,col));
 
@@ -75,7 +162,7 @@ public class Igra{
 		}
 		while(!bfs.isEmpty()){
 			Koordinati k=bfs.poll();
-			if(k.getX()==N-1){
+			if(k.getY()==N-1){
 //				urediPoljaCol();
 				return Igralec.PRVI;
 			}
@@ -102,14 +189,14 @@ public class Igra{
 		//Preverimo še za igralca 2. Na žalost moramo duplicirati kodo :(
 		bfs=new LinkedList<Koordinati>();
 		for(int row=0;row<N;row++){
-			if(plosca[row][0]==Polje.DRUGI){
-				bfs.add(new Koordinati(row,0));
+			if(plosca[0][row]==Polje.DRUGI){
+				bfs.add(new Koordinati(0,row));
 				done[row][0]=true;
 			}
 		}
 		while(!bfs.isEmpty()){
 			Koordinati k=bfs.poll();
-			if(k.getY()==N-1){
+			if(k.getX()==N-1){
 				return Igralec.DRUGI;
 			}
 			int[] dx={0,1,1,0,-1,-1};

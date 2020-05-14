@@ -4,7 +4,7 @@ import GUI.*;
 
 public class Ogrodje{
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 //		Igra a=new Igra(6);
 //		for(int i=0;i<6;i++) {
 //			a.odigraj(new Koordinati(0,i));
@@ -28,7 +28,7 @@ public class Ogrodje{
 		Igra c=new Igra(4);
 		c.odigraj(new Koordinati(0,0));
 		c.odigraj(new Koordinati(1,0));
-		c.odigraj(new Koordinati(0,2));
+		c.odigraj(new Koordinati(0,1));
 		c.odigraj(new Koordinati(2,0));
 		c.odigraj(new Koordinati(1,1));
 		c.odigraj(new Koordinati(3,0));
@@ -36,9 +36,10 @@ public class Ogrodje{
 		c.odigraj(new Koordinati(3,3));
 		c.odigraj(new Koordinati(2,2));
 		c.odigraj(new Koordinati(0,3));
-		c.odigraj(new Koordinati(3,2));
+		c.odigraj(new Koordinati(2,3));
 		System.out.println(c);
 		System.out.println(c.getStanje());
+		System.out.println(c.zmagovalnaPot());
 //		System.out.println(c.zmagovalnaPolja);
 		
 	// zelimo si 
