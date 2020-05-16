@@ -18,6 +18,7 @@ import java.awt.event.*;
 	protected boolean konecIgre;
 	protected Color barvaIgralca1;
 	protected Color barvaIgralca2;
+	protected Color barvaZmaga;
 	protected Color barvaRoba;
 	protected Color barvaPrazno;
 	protected int debelinaRoba;
@@ -33,6 +34,7 @@ import java.awt.event.*;
 		this.konecIgre=false;
 		this.barvaIgralca1=Color.red;
 		this.barvaIgralca2=Color.blue;
+		this.barvaZmaga = Color.yellow;
 		this.barvaRoba=Color.black;
 		this.barvaPrazno=Color.white;
 		this.setPreferredSize(getPrefferedSize());
@@ -56,7 +58,7 @@ import java.awt.event.*;
 
 		int priporocenaSirina=Math.min(getWidth(),(int)getHeight()*3/2);
 
-		System.out.println("sirina: "+getWidth()+", visina: "+getHeight());
+
 		int sx=getWidth()/2;
 		int sy=getHeight()/2;
 		//x0 = paddingx + notranji
@@ -69,11 +71,6 @@ import java.awt.event.*;
 		paddingx=sx-(this.igra.N*3/2)*notranjiPolmer;
 		paddingy=sy-(this.igra.N/2)*(zunanjiPolmer+notranjiPolmer);
 
-//		System.out.println("zunanji: "+zunanjiPolmer);
-//		System.out.println("noranji: "+notranjiPolmer);
-//		System.out.println("paddingx: "+paddingx);
-//		System.out.println("paddingy: "+paddingx);
-//		System.out.println("debelinaRoba: "+debelinaRoba);
 
 		notranjiPolmer=(int)Math.round(zunanjiPolmer*Math.sqrt(3)/2);  // polmer šestkotniku očrtane in včrtane krožnice
 		Color barva;
@@ -190,17 +187,30 @@ import java.awt.event.*;
 					barva=this.barvaIgralca2;
 				else
 					barva=this.barvaPrazno; // dodati še za zmagovalno vrstico
-				// test
-				if(i==0&&j==0)
-					System.out.println("x0 = "+y+", y0 = "+x+",");
-				else if(i==0&&j==this.igra.plosca.length-1)
-					System.out.println("x0 = "+y+", yN = "+x+",");
-				else if(i==this.igra.plosca.length-1&&j==0)
-					System.out.println("xN = "+y+", y0 = "+x+",");
-				else if(i==this.igra.plosca.length-1&&j==this.igra.plosca.length-1)
-					System.out.println("xN = "+y+", yN = "+x+",");
+
+//				// test
+//				if(i==0&&j==0)
+//					System.out.println("x0 = "+y+", y0 = "+x+",");
+//				else if(i==0&&j==this.igra.plosca.length-1)
+//					System.out.println("x0 = "+y+", yN = "+x+",");
+//				else if(i==this.igra.plosca.length-1&&j==0)
+//					System.out.println("xN = "+y+", y0 = "+x+",");
+//				else if(i==this.igra.plosca.length-1&&j==this.igra.plosca.length-1)
+//					System.out.println("xN = "+y+", yN = "+x+",");
 
 				sestkotnik(y,x,(int)Math.round(zunanjiPolmer+debelinaRoba),debelinaRoba,g2,this.barvaRoba,barva);
+			}
+			if (this.igra.getStanje() != Stanje.V_TEKU) {
+				try {
+					for (Koordinati k : igra.zmagovalnaPot()) {
+						int xz =(int)Math.round(paddingx+(2*k.getX()+1)*notranjiPolmer+(k.getY()*notranjiPolmer)); // vodoravno
+						int yz =(int)Math.round(paddingy+zunanjiPolmer+k.getY()*1.5*zunanjiPolmer); // navpično
+						sestkotnik(yz, xz,(int)Math.round(zunanjiPolmer+debelinaRoba),debelinaRoba,g2,this.barvaRoba,this.barvaZmaga);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -256,6 +266,18 @@ import java.awt.event.*;
 		}
 		Vodja.igramo();
 	}
+	
+	public void barva1(Color b) {
+		if (b != null) {
+			this.barvaIgralca1 = b;
+			repaint();		}
+	}
+	public void barva2(Color b) {
+		if (b != null) {
+			this.barvaIgralca2 = b;
+			repaint();		}
+	}
+	
 
 	@Override public void mousePressed(MouseEvent e){
 	}

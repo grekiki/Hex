@@ -1,12 +1,19 @@
 package GUI;
 
 import javax.swing.*;
+
+import logika.Stanje;
+import vodja.Vodja;
+import logika.Igra;
+import logika.Igralec;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.JColorChooser;
 
 @SuppressWarnings("serial") public class Okno extends JFrame implements ActionListener{
 
@@ -27,6 +34,10 @@ import java.awt.GridBagLayout;
 	private JMenuItem zamikNasprotnika;
 	private JMenuItem ime1;
 	private JMenuItem ime2;
+	
+	// igralca
+	private String igralec1 = "Igralec 1";
+	private String igralec2 = "Igralec 2";
 
 	public Okno(String ime,Platno platno){
 		this.setTitle(ime);
@@ -121,10 +132,70 @@ import java.awt.GridBagLayout;
 
 	}
 	@Override public void actionPerformed(ActionEvent e){
+		if (e.getSource() == barvaPrvega) { 
+		Color novaBarva = JColorChooser.showDialog(this,
+				"Izberite barvo", platno.barvaIgralca1);
+		platno.barva1(novaBarva);
+		}
+		else if (e.getSource() == barvaDrugega) {
+			Color novaBarva = JColorChooser.showDialog(this,
+					"Izberite barvo", platno.barvaIgralca2);
+			platno.barva2(novaBarva);
+		}
+		else if (e.getSource() == ime1) {
+			String i = JOptionPane.showInputDialog("Spremenite ime igralca 1");
+			preimenuj(true, i);
+		}
+		else if (e.getSource() == ime2) {
+			String i = JOptionPane.showInputDialog("Spremenite ime igralca 2");
+			preimenuj(false, i);
+		}
+		else if (e.getSource() == velikostPlosce) {
+			String i = JOptionPane.showInputDialog("Izberite število vrstic in stolpičev.");
+			try {
+				   
+				int n = Integer.parseInt(i);
+				Igra nova = new Igra(n);
+				this.platno.nastaviIgro(nova);
+//				Vodja.igra = nova;
+//				Vodja.igramo();
+						   
+				}
+				catch (NumberFormatException ex)
+				{
+				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
+				}
+		}
 		//TODO
 	}
+	public void preimenuj(boolean b, String niz) {
+		if (niz != null) {
+		if (b) {
+			this.igralec1 = niz;
+		}
+		else this.igralec2 = niz;
+		}
+		osveziGUI();
+	}
+	
 	public void osveziGUI(){
 		platno.repaint();
-	}
+		if (this.platno.igra.getStanje() == Stanje.V_TEKU) {
+			switch(this.platno.igra.naPotezi) {
+			case PRVI:  status.setText("Na vrsti je " + igralec1 + ".");
+			break;
+			case DRUGI: status.setText("Na vrsti je " + igralec2 + ".");
+			break;
+			}}
+		else {
+			switch(this.platno.igra.getZmagovalec()) {
+			case PRVI: status.setText("Zmagal je " + igralec1 + "!");
+			break;
+			case DRUGI: status.setText("Zmagal je " + igralec2 + "!");
+			break;
+		}
+			
+		}
 
+	}
 }
