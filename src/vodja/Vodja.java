@@ -1,5 +1,7 @@
 package vodja;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.SwingWorker;
 
 import GUI.Okno;
@@ -17,7 +19,13 @@ public class Vodja{
 	public static boolean drugiJeClovek=true;
 
 	public static boolean clovekNaVrsti=false;
+	
+	public static int zamik = 2;
 
+	public static void igramoNovoIgro(Igra i){
+		igra=i;
+		igramo();
+	}
 	public static void igramoNovoIgro(){
 		igra=new Igra();
 		igramo();
@@ -51,6 +59,7 @@ public class Vodja{
 	public static void igrajRacunalnikovoPotezo(){
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
 			@Override protected Koordinati doInBackground(){
+				try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
 				Koordinati poteza=racunalnikovaInteligenca.izberiPotezo(igra);
 				return poteza;
 			}
@@ -73,5 +82,11 @@ public class Vodja{
 			clovekNaVrsti=false;
 		igramo();
 	}
-
+public static void kdoIgra(boolean a, boolean b) {
+	prviJeClovek = a;
+	drugiJeClovek = b;
+	}
+public static void nastaviZamik(int n) {
+	zamik = n;
+}
 }

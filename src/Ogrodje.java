@@ -55,7 +55,7 @@ public class Ogrodje{
 
 		Platno platno=new Platno(900,600);
 		platno.nastaviIgro(d);
-		Okno okno1=new Okno("Poskus 1",platno);
+		Okno okno1=new Okno("HEX",platno);
 		okno1.pack();
 		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);

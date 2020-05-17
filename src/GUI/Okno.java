@@ -157,8 +157,7 @@ import javax.swing.JColorChooser;
 				int n = Integer.parseInt(i);
 				Igra nova = new Igra(n);
 				this.platno.nastaviIgro(nova);
-//				Vodja.igra = nova;
-//				Vodja.igramo();
+				Vodja.igramoNovoIgro(nova);
 						   
 				}
 				catch (NumberFormatException ex)
@@ -166,10 +165,48 @@ import javax.swing.JColorChooser;
 				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
 				}
 		}
+		else if (e.getSource() == igraClovekRacunalnik) {
+			Vodja.kdoIgra(true, false);
+			Igra nova = new Igra(this.platno.igra.N);
+			this.platno.nastaviIgro(nova);
+			Vodja.igramoNovoIgro(nova);
+		}
+		else if (e.getSource() == igraClovekClovek) {
+			Vodja.kdoIgra(true, true);
+			Igra nova = new Igra(this.platno.igra.N);
+			this.platno.nastaviIgro(nova);
+			Vodja.igramoNovoIgro(nova);
+		}
+		else if (e.getSource() == igraRacunalnikRacunalnik) {
+			Vodja.kdoIgra(false, false);
+			Igra nova = new Igra(this.platno.igra.N);
+			this.platno.nastaviIgro(nova);
+			Vodja.igramoNovoIgro(nova);
+		}
+		else if (e.getSource() == igraRacunalnikClovek) {
+			Vodja.kdoIgra(false, true);
+			Igra nova = new Igra(this.platno.igra.N);
+			this.platno.nastaviIgro(nova);
+			Vodja.igramoNovoIgro(nova);
+		}
+		else if (e.getSource() == zamikNasprotnika) {
+			String i = JOptionPane.showInputDialog("Izberite dolžino računalnikovega zamika v sekundah.");
+			try {
+				   
+				int n = Integer.parseInt(i);
+				Vodja.nastaviZamik(n);
+						   
+				}
+				catch (NumberFormatException ex)
+				{
+				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
+				}
+		}
+		osveziGUI();
 		//TODO
 	}
 	public void preimenuj(boolean b, String niz) {
-		if (niz != null) {
+		if (niz != null && !niz.equals("")) {
 		if (b) {
 			this.igralec1 = niz;
 		}
@@ -182,16 +219,25 @@ import javax.swing.JColorChooser;
 		platno.repaint();
 		if (this.platno.igra.getStanje() == Stanje.V_TEKU) {
 			switch(this.platno.igra.naPotezi) {
-			case PRVI:  status.setText("Na vrsti je " + igralec1 + ".");
+			case PRVI:  
+				status.setForeground(platno.barvaIgralca1); 
+				status.setText("Na vrsti je " + igralec1 + ".");
+				
 			break;
-			case DRUGI: status.setText("Na vrsti je " + igralec2 + ".");
+			case DRUGI:  
+				status.setForeground(platno.barvaIgralca2); 
+				status.setText("Na vrsti je " + igralec2 + ".");
 			break;
 			}}
 		else {
 			switch(this.platno.igra.getZmagovalec()) {
-			case PRVI: status.setText("Zmagal je " + igralec1 + "!");
+			case PRVI: 
+				status.setForeground(platno.barvaIgralca1);
+				status.setText("Zmagal je " + igralec1 + "!");
 			break;
-			case DRUGI: status.setText("Zmagal je " + igralec2 + "!");
+			case DRUGI: 
+				status.setForeground(platno.barvaIgralca2);
+				status.setText("Zmagal je " + igralec2 + "!");
 			break;
 		}
 			
