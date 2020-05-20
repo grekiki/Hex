@@ -20,34 +20,42 @@ public class Ogrodje{
 		if(a.getZmagovalec()!=null){
 			System.out.println(a.getZmagovalec());
 		}
-		Igra b=new Igra(6);
-		for(int i=0;i<6;i++){
-			b.odigraj(new Koordinati(i,0));
-			b.odigraj(new Koordinati(i,1));
+		Igra b=new Igra(5);
+		int[][]q= {{0,1,2,0,0},{2,0,1,2,2},{1,0,0,1,2},{0,1,2,1,2},{0,2,1,1,1}};
+		while(true) {
+			boolean worked=false;
+			label:
+			for(int i=0;i<q.length;i++) {
+				for(int j=0;j<q[i].length;j++) {
+					if(q[i][j]==1) {
+						q[i][j]=0;
+						b.odigraj(new Koordinati(i,j));
+						worked=true;
+						break label;
+					}
+				}
+			}
+			if(!worked) {
+				break;
+			}
+			boolean worked2=false;
+			label2:
+			for(int i=0;i<q.length;i++) {
+				for(int j=0;j<q[i].length;j++) {
+					if(q[i][j]==2) {
+						q[i][j]=0;
+						b.odigraj(new Koordinati(i,j));
+						worked2=true;
+						break label2;
+					}
+				}
+			}
+			if(!worked2) {
+				break;
+			}
 		}
 		System.out.println(b);
 		System.out.println(b.getStanje());
-//		System.out.println(b.zmagovalnaPolja);
-
-		Igra c=new Igra(5);
-		c.odigraj(new Koordinati(0,3));
-		c.odigraj(new Koordinati(0,0));
-		c.odigraj(new Koordinati(1,3));
-		c.odigraj(new Koordinati(1,0));
-		c.odigraj(new Koordinati(2,2));
-		c.odigraj(new Koordinati(2,0));
-		c.odigraj(new Koordinati(3,2));
-		c.odigraj(new Koordinati(3,0));
-		c.odigraj(new Koordinati(3,3));
-		c.odigraj(new Koordinati(4,0));
-		c.odigraj(new Koordinati(3,4));
-		c.odigraj(new Koordinati(3,4));
-		c.odigraj(new Koordinati(0,1));
-//		System.out.println(c);
-//		System.out.println(c.getStanje());
-//		System.out.println(c.zmagovalnaPot());
-//		System.out.println(c.zmagovalnaPolja);
-
 		// zelimo si 
 		//[Koordinati [x=0, y=2], Koordinati [x=1, y=1], Koordinati [x=2, y=1], Koordinati [x=2, y=2], Koordinati [x=3, y=2]]
 

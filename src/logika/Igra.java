@@ -82,7 +82,7 @@ public class Igra{
 					return ans;
 				}
 				int[] dx={0,1,1,0,-1,-1};
-				int[] dy={1,-1,0,-1,0,1};
+				int[] dy={-1,-1,0,1,1,0};
 				int x=k.getX();
 				int y=k.getY();
 				for(int dir=0;dir<dx.length;dir++){
@@ -123,7 +123,7 @@ public class Igra{
 					return ans;
 				}
 				int[] dx={0,1,1,0,-1,-1};
-				int[] dy={1,0,-1,-1,-1,0};
+				int[] dy={-1,-1,0,1,1,0};
 				int x=k.getX();
 				int y=k.getY();
 				for(int dir=0;dir<dx.length;dir++){
@@ -166,8 +166,9 @@ public class Igra{
 //				urediPoljaCol();
 				return Igralec.PRVI;
 			}
+
 			int[] dx={0,1,1,0,-1,-1};
-			int[] dy={1,1,0,-1,0,1};
+			int[] dy={-1,-1,0,1,1,0};
 			int x=k.getX();
 			int y=k.getY();
 			for(int dir=0;dir<dx.length;dir++){
@@ -199,8 +200,9 @@ public class Igra{
 			if(k.getX()==N-1){
 				return Igralec.DRUGI;
 			}
+
 			int[] dx={0,1,1,0,-1,-1};
-			int[] dy={1,-1,0,-1,0,1};
+			int[] dy={-1,-1,0,1,1,0};
 			int x=k.getX();
 			int y=k.getY();
 			for(int dir=0;dir<dx.length;dir++){
