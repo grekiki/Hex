@@ -265,6 +265,7 @@ import java.awt.event.*;
 			}
 			repaint();
 		}
+		else return;
 		Vodja.igramo();
 	}
 	
