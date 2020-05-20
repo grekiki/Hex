@@ -67,7 +67,7 @@ import java.awt.event.*;
 		//int zunanji = 40; //odvisen naj bo od velikosti platna
 		zunanjiPolmer=(priporocenaSirina/((this.igra.N*3/2)+4))/2;
 		notranjiPolmer=(int)Math.round(zunanjiPolmer*Math.sqrt(3)/2);  // polmer šestkotniku očrtane in včrtane krožnice
-		debelinaRoba=priporocenaSirina/igra.N/30;
+		debelinaRoba=priporocenaSirina/igra.N/20;
 		paddingx=sx-(this.igra.N*3/2)*notranjiPolmer;
 		paddingy=sy-(this.igra.N/2)*(zunanjiPolmer+notranjiPolmer);
 

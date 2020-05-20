@@ -29,21 +29,23 @@ public class Ogrodje{
 		System.out.println(b.getStanje());
 //		System.out.println(b.zmagovalnaPolja);
 
-		Igra c=new Igra(4);
-		c.odigraj(new Koordinati(0,0));
-		c.odigraj(new Koordinati(1,0));
-		c.odigraj(new Koordinati(0,1));
-		c.odigraj(new Koordinati(2,0));
-		c.odigraj(new Koordinati(1,1));
-		c.odigraj(new Koordinati(3,0));
-		c.odigraj(new Koordinati(2,1));
-		c.odigraj(new Koordinati(3,3));
-		c.odigraj(new Koordinati(2,2));
+		Igra c=new Igra(5);
 		c.odigraj(new Koordinati(0,3));
-		c.odigraj(new Koordinati(2,3));
-		System.out.println(c);
-		System.out.println(c.getStanje());
-		System.out.println(c.zmagovalnaPot());
+		c.odigraj(new Koordinati(0,0));
+		c.odigraj(new Koordinati(1,3));
+		c.odigraj(new Koordinati(1,0));
+		c.odigraj(new Koordinati(2,2));
+		c.odigraj(new Koordinati(2,0));
+		c.odigraj(new Koordinati(3,2));
+		c.odigraj(new Koordinati(3,0));
+		c.odigraj(new Koordinati(3,3));
+		c.odigraj(new Koordinati(4,0));
+		c.odigraj(new Koordinati(3,4));
+		c.odigraj(new Koordinati(3,4));
+		c.odigraj(new Koordinati(0,1));
+//		System.out.println(c);
+//		System.out.println(c.getStanje());
+//		System.out.println(c.zmagovalnaPot());
 //		System.out.println(c.zmagovalnaPolja);
 
 		// zelimo si 
@@ -54,14 +56,15 @@ public class Ogrodje{
 		Igra d=new Igra(3);
 
 		Platno platno=new Platno(900,600);
-		platno.nastaviIgro(d);
+		platno.nastaviIgro(c);
 		Okno okno1=new Okno("HEX",platno);
 		okno1.pack();
 		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);
 		Vodja.okno=okno1;
-		Vodja.igra=d;
+		Vodja.igra=c;
 		Vodja.igramo();
 
 	}
 }
+// 

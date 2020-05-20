@@ -234,7 +234,7 @@ public class Igra{
 
 	public Stanje getStanje(){
 		Igralec zmagovalec=getZmagovalec();
-		System.out.println(zmagovalec);
+		//System.out.println(zmagovalec);
 		if(zmagovalec==Igralec.PRVI)
 			return Stanje.ZMAGA_PRVI;
 		else if(zmagovalec==Igralec.DRUGI)

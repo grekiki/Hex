@@ -33,7 +33,7 @@ public class Vodja{
 
 	public static void igramo(){
 		okno.osveziGUI();
-		System.out.println(igra.getStanje());
+		//System.out.println(igra.getStanje());
 		switch(igra.getStanje()){
 			case ZMAGA_PRVI:
 				break;
@@ -70,7 +70,7 @@ public class Vodja{
 					//poteza=racunalnikovaInteligenca.izberiPotezo(igra);
 					poteza = get();
 				}catch(Exception e){};
-				System.out.println(poteza);
+				//System.out.println(poteza);
 				igra.odigraj(poteza);
 				igramo();
 
