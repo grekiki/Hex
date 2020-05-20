@@ -245,41 +245,5 @@ public class Igra{
 			return Stanje.V_TEKU;
 	}
 
-//	private void urediPoljaCol() {
-//		ArrayList<ArrayList<Koordinati>> pomozen = new ArrayList<ArrayList<Koordinati>>();
-//		for (Koordinati k : zmagovalnaPolja) {
-//			if (k.getX() == 0) {
-//				ArrayList<Koordinati> nov = new ArrayList<Koordinati>();
-//				nov.add(new Koordinati(k.getX(), k.getY()));
-//				pomozen.add(nov);
-//			}
-//			else {
-//				for (ArrayList<Koordinati> a : pomozen) {
-//					if (staSkupaj(a.get(a.size() - 1), k)) a.add(new Koordinati(k.getX(), k.getY()));
-//				}
-//			}
-//		}
-//		for (ArrayList<Koordinati> a : pomozen) {
-//			if (a.get(a.size() - 1).getX() == N-1) {
-//				zmagovalnaPolja.clear();
-//				for (Koordinati k : a) zmagovalnaPolja.add(new Koordinati(k.getX(), k.getY()));
-//				break;
-//			}
-//		}
-//		
-//	}
-//	private boolean staSkupaj(Koordinati k1, Koordinati k2) {
-//		int x1 = k1.getX();
-//		int y1 = k1.getY();
-//		int x2 = k2.getX();
-//		int y2 = k2.getY();
-//		int[]dx= {0,1,1,0,-1,-1};
-//		int[]dy= {1,0,-1,-1,-1,0};
-//		int x = x2 - x1;
-//		int y = y2 - y1;
-//		for(int i = 0; i < dx.length; i++) {
-//			if (x == dx[i] && y == dy[i]) return true;
-//		}
-//		return false;
-//		}
+
 }

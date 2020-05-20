@@ -9,6 +9,19 @@ import GUI.*;
 public class Ogrodje{
 
 	public static void main(String[] args) throws Exception{
+		
+		
+		///////////////////// Glavo okno ////////////////////////////
+//		Igra hex=new Igra(11);
+//
+//		Platno platno=new Platno(900,600);
+//		platno.nastaviIgro(hex);
+//		Okno glavnoOkno=new Okno("HEX",platno);
+//		glavnoOkno.pack();
+//		glavnoOkno.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//		glavnoOkno.setVisible(true);
+//		Vodja.okno=glavnoOkno;
+		//////////////////////////////////////////////////////////////
 		Igra a=new Igra(3);
 		a.odigraj(new Koordinati(0,0));
 		a.odigraj(new Koordinati(1,0));
@@ -56,8 +69,7 @@ public class Ogrodje{
 		}
 		System.out.println(b);
 		System.out.println(b.getStanje());
-		// zelimo si 
-		//[Koordinati [x=0, y=2], Koordinati [x=1, y=1], Koordinati [x=2, y=1], Koordinati [x=2, y=2], Koordinati [x=3, y=2]]
+
 
 		/////////////////////////////////////////////////////
 

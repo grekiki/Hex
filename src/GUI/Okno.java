@@ -128,9 +128,10 @@ import javax.swing.JColorChooser;
 		status_layout.anchor=GridBagConstraints.CENTER;
 		getContentPane().add(status,status_layout);
 
-		status.setText("Izberite igro!");
+		status.setText("Dobrodošli v HEX! Izberite igro!");
 
 	}
+	
 	@Override public void actionPerformed(ActionEvent e){
 		if (e.getSource() == barvaPrvega) { 
 		Color novaBarva = JColorChooser.showDialog(this,
