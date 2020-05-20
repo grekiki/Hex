@@ -245,7 +245,7 @@ import java.awt.event.*;
 	}
 
 	@Override public void mouseClicked(MouseEvent e){
-		System.out.println(Vodja.clovekNaVrsti);
+		//System.out.println(Vodja.clovekNaVrsti);
 		if(igra.getStanje()!=Stanje.V_TEKU) {
 			konecIgre=true;
 		}

@@ -56,13 +56,13 @@ public class Ogrodje{
 		Igra d=new Igra(3);
 
 		Platno platno=new Platno(900,600);
-		platno.nastaviIgro(c);
+		platno.nastaviIgro(d);
 		Okno okno1=new Okno("HEX",platno);
 		okno1.pack();
 		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);
 		Vodja.okno=okno1;
-		Vodja.igra=c;
+		Vodja.igra=d;
 		Vodja.igramo();
 
 	}
