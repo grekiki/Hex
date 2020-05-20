@@ -155,10 +155,11 @@ import javax.swing.JColorChooser;
 			try {
 				   
 				int n = Integer.parseInt(i);
+				if (n > 0) {
 				Igra nova = new Igra(n);
 				this.platno.nastaviIgro(nova);
-				Vodja.igramoNovoIgro(nova);
-						   
+				Vodja.igramoNovoIgro(nova);}
+				else {JOptionPane.showMessageDialog(this, "Neveljavna izbira!");}		   
 				}
 				catch (NumberFormatException ex)
 				{
@@ -194,8 +195,9 @@ import javax.swing.JColorChooser;
 			try {
 				   
 				int n = Integer.parseInt(i);
-				Vodja.nastaviZamik(n);
-						   
+				if (n >= 0) {
+				Vodja.nastaviZamik(n);}
+				else {JOptionPane.showMessageDialog(this, "Neveljavna izbira!");}
 				}
 				catch (NumberFormatException ex)
 				{

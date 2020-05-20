@@ -67,7 +67,7 @@ import java.awt.event.*;
 		//int zunanji = 40; //odvisen naj bo od velikosti platna
 		zunanjiPolmer=(priporocenaSirina/((this.igra.N*3/2)+4))/2;
 		notranjiPolmer=(int)Math.round(zunanjiPolmer*Math.sqrt(3)/2);  // polmer šestkotniku očrtane in včrtane krožnice
-		debelinaRoba=6;
+		debelinaRoba=priporocenaSirina/igra.N/30;
 		paddingx=sx-(this.igra.N*3/2)*notranjiPolmer;
 		paddingy=sy-(this.igra.N/2)*(zunanjiPolmer+notranjiPolmer);
 
@@ -198,14 +198,14 @@ import java.awt.event.*;
 //				else if(i==this.igra.plosca.length-1&&j==this.igra.plosca.length-1)
 //					System.out.println("xN = "+y+", yN = "+x+",");
 
-				sestkotnik(y,x,(int)Math.round(zunanjiPolmer+debelinaRoba),debelinaRoba,g2,this.barvaRoba,barva);
+				sestkotnik(y,x,(int)Math.round(zunanjiPolmer+debelinaRoba/2),debelinaRoba,g2,this.barvaRoba,barva);
 			}
 			if (this.igra.getStanje() != Stanje.V_TEKU) {
 				try {
 					for (Koordinati k : igra.zmagovalnaPot()) {
 						int xz =(int)Math.round(paddingx+(2*k.getX()+1)*notranjiPolmer+(k.getY()*notranjiPolmer)); // vodoravno
 						int yz =(int)Math.round(paddingy+zunanjiPolmer+k.getY()*1.5*zunanjiPolmer); // navpično
-						sestkotnik(yz, xz,(int)Math.round(zunanjiPolmer+debelinaRoba),debelinaRoba,g2,this.barvaRoba,this.barvaZmaga);
+						sestkotnik(yz, xz,(int)Math.round(zunanjiPolmer+debelinaRoba/2),debelinaRoba,g2,this.barvaRoba,this.barvaZmaga);
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -245,6 +245,7 @@ import java.awt.event.*;
 	}
 
 	@Override public void mouseClicked(MouseEvent e){
+		System.out.println(Vodja.clovekNaVrsti);
 		if(igra.getStanje()!=Stanje.V_TEKU) {
 			konecIgre=true;
 		}

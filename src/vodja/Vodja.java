@@ -59,18 +59,21 @@ public class Vodja{
 	public static void igrajRacunalnikovoPotezo(){
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
 			@Override protected Koordinati doInBackground(){
-				try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
 				Koordinati poteza=racunalnikovaInteligenca.izberiPotezo(igra);
+				try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
+				//spremenil vrsti red
 				return poteza;
 			}
 			@Override protected void done(){
 				Koordinati poteza=null;
 				try{
-					poteza=racunalnikovaInteligenca.izberiPotezo(igra);
+					//poteza=racunalnikovaInteligenca.izberiPotezo(igra);
+					poteza = get();
 				}catch(Exception e){};
 				System.out.println(poteza);
 				igra.odigraj(poteza);
 				igramo();
+
 			}
 		};
 		worker.execute();
