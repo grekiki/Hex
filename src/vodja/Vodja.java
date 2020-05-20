@@ -19,8 +19,8 @@ public class Vodja{
 	public static boolean drugiJeClovek=true;
 
 	public static boolean clovekNaVrsti=false;
-
-	public static int zamik=2;
+	
+	public static int zamik = 2;
 
 	public static void igramoNovoIgro(Igra i){
 		igra=i;
@@ -33,7 +33,7 @@ public class Vodja{
 
 	public static void igramo(){
 		okno.osveziGUI();
-		System.out.println(igra.getStanje());
+		//System.out.println(igra.getStanje());
 		switch(igra.getStanje()){
 			case ZMAGA_PRVI:
 				break;
@@ -60,9 +60,7 @@ public class Vodja{
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
 			@Override protected Koordinati doInBackground(){
 				Koordinati poteza=racunalnikovaInteligenca.izberiPotezo(igra);
-				try{
-					TimeUnit.SECONDS.sleep(zamik);
-				}catch(Exception e){};
+				try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
 				//spremenil vrsti red
 				return poteza;
 			}
@@ -70,9 +68,9 @@ public class Vodja{
 				Koordinati poteza=null;
 				try{
 					//poteza=racunalnikovaInteligenca.izberiPotezo(igra);
-					poteza=get();
+					poteza = get();
 				}catch(Exception e){};
-//				System.out.println(poteza);
+				//System.out.println(poteza);
 				igra.odigraj(poteza);
 				igramo();
 
@@ -87,11 +85,11 @@ public class Vodja{
 			clovekNaVrsti=false;
 		igramo();
 	}
-	public static void kdoIgra(boolean a,boolean b){
-		prviJeClovek=a;
-		drugiJeClovek=b;
+public static void kdoIgra(boolean a, boolean b) {
+	prviJeClovek = a;
+	drugiJeClovek = b;
 	}
-	public static void nastaviZamik(int n){
-		zamik=n;
-	}
+public static void nastaviZamik(int n) {
+	zamik = n;
+}
 }

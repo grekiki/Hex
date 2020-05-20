@@ -152,6 +152,7 @@ import javax.swing.JColorChooser;
 		}
 		else if (e.getSource() == velikostPlosce) {
 			String i = JOptionPane.showInputDialog("Izberite število vrstic in stolpičev.");
+			if (i!=null && !i.equals("")) {
 			try {
 				   
 				int n = Integer.parseInt(i);
@@ -165,7 +166,7 @@ import javax.swing.JColorChooser;
 				{
 				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
 				}
-		}
+		}}
 		else if (e.getSource() == igraClovekRacunalnik) {
 			Vodja.kdoIgra(true, false);
 			Igra nova = new Igra(this.platno.igra.N);
@@ -192,6 +193,7 @@ import javax.swing.JColorChooser;
 		}
 		else if (e.getSource() == zamikNasprotnika) {
 			String i = JOptionPane.showInputDialog("Izberite dolžino računalnikovega zamika v sekundah.");
+			if (i!=null && !i.equals("")) {
 			try {
 				   
 				int n = Integer.parseInt(i);
@@ -203,7 +205,7 @@ import javax.swing.JColorChooser;
 				{
 				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
 				}
-		}
+		}}
 		osveziGUI();
 		//TODO
 	}
