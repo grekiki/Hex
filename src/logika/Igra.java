@@ -82,7 +82,7 @@ public class Igra{
 					return ans;
 				}
 				int[] dx={0,1,1,0,-1,-1};
-				int[] dy={1,0,-1,-1,-1,0};
+				int[] dy={1,-1,0,-1,0,1};
 				int x=k.getX();
 				int y=k.getY();
 				for(int dir=0;dir<dx.length;dir++){
@@ -145,7 +145,7 @@ public class Igra{
 	}
 	public Igralec getZmagovalec(){
 
-//		zmagovalnaPolja.clear();
+		//		zmagovalnaPolja.clear();
 
 		//Preverimo ce je zgornji rob povezan s spodnjim
 		//To bo za igralca_1 ki postavlja v stringu recimo X. 
@@ -167,7 +167,7 @@ public class Igra{
 				return Igralec.PRVI;
 			}
 			int[] dx={0,1,1,0,-1,-1};
-			int[] dy={1,0,-1,-1,-1,0};
+			int[] dy={1,1,0,-1,0,1};
 			int x=k.getX();
 			int y=k.getY();
 			for(int dir=0;dir<dx.length;dir++){
@@ -200,7 +200,7 @@ public class Igra{
 				return Igralec.DRUGI;
 			}
 			int[] dx={0,1,1,0,-1,-1};
-			int[] dy={1,0,-1,-1,-1,0};
+			int[] dy={1,-1,0,-1,0,1};
 			int x=k.getX();
 			int y=k.getY();
 			for(int dir=0;dir<dx.length;dir++){
@@ -234,7 +234,7 @@ public class Igra{
 
 	public Stanje getStanje(){
 		Igralec zmagovalec=getZmagovalec();
-		System.out.println(zmagovalec);
+//		System.out.println(zmagovalec);
 		if(zmagovalec==Igralec.PRVI)
 			return Stanje.ZMAGA_PRVI;
 		else if(zmagovalec==Igralec.DRUGI)
