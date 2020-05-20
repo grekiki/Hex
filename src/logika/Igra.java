@@ -192,7 +192,7 @@ public class Igra{
 		for(int row=0;row<N;row++){
 			if(plosca[0][row]==Polje.DRUGI){
 				bfs.add(new Koordinati(0,row));
-				done[row][0]=true;
+				done[0][row]=true;
 			}
 		}
 		while(!bfs.isEmpty()){

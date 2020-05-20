@@ -21,7 +21,7 @@ public class Ogrodje{
 			System.out.println(a.getZmagovalec());
 		}
 		Igra b=new Igra(5);
-		int[][]q= {{0,1,2,0,0},{2,0,1,2,2},{1,0,0,1,2},{0,1,2,1,2},{0,2,1,1,1}};
+		int[][]q= {{2,2,2,2,1},{2,1,2,2,2},{1,1,1,2,1},{1,1,1,1,1},{2,1,2,2,1}};
 		while(true) {
 			boolean worked=false;
 			label:
@@ -29,7 +29,7 @@ public class Ogrodje{
 				for(int j=0;j<q[i].length;j++) {
 					if(q[i][j]==1) {
 						q[i][j]=0;
-						b.odigraj(new Koordinati(i,j));
+						b.odigraj(new Koordinati(j,i));
 						worked=true;
 						break label;
 					}
@@ -44,7 +44,7 @@ public class Ogrodje{
 				for(int j=0;j<q[i].length;j++) {
 					if(q[i][j]==2) {
 						q[i][j]=0;
-						b.odigraj(new Koordinati(i,j));
+						b.odigraj(new Koordinati(j,i));
 						worked2=true;
 						break label2;
 					}
