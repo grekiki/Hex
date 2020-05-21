@@ -54,7 +54,7 @@ public class Vodja{
 		}
 	}
 
-	public static Inteligenca racunalnikovaInteligenca=new Inteligenca("Spam");
+	public static Inteligenca racunalnikovaInteligenca=new Inteligenca();
 
 	public static void igrajRacunalnikovoPotezo(){
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
