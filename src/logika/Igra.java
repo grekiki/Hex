@@ -28,6 +28,17 @@ public class Igra{
 		N=velikost;
 		inicializiraj_plosco();
 	}
+	
+	//naredi kopijo že obstoječe igre, zaradi minimaxa
+	public Igra(Igra igra) {
+		this.N = igra.N;
+		this.plosca = new Polje[N][N];
+		for (int i = 0; i < igra.N; i++) {
+			for (int j = 0; j<igra.N; j++) {
+				this.plosca[i][j] = igra.plosca[i][j];
+			}
+		}
+	}
 	private void inicializiraj_plosco(){
 		konecIgre=false;
 		plosca=new Polje[N][N];
@@ -245,5 +256,5 @@ public class Igra{
 			return Stanje.V_TEKU;
 	}
 
-
 }
+
