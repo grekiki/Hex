@@ -6,6 +6,7 @@ import javax.swing.SwingWorker;
 
 import GUI.Okno;
 import inteligenca.Inteligenca;
+import inteligenca.Minimax;
 import logika.Igra;
 import logika.Igralec;
 import splosno.Koordinati;
@@ -55,11 +56,13 @@ public class Vodja{
 	}
 
 	public static Inteligenca racunalnikovaInteligenca=new Inteligenca("Spam");
+	public static Minimax minimax = new Minimax(5);
 
 	public static void igrajRacunalnikovoPotezo(){
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
 			@Override protected Koordinati doInBackground(){
-				Koordinati poteza=racunalnikovaInteligenca.izberiPotezo(igra);
+				//Koordinati poteza=racunalnikovaInteligenca.izberiPotezo(igra);
+				Koordinati poteza = minimax.izberiPotezo(igra);
 				try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
 				//spremenil vrsti red
 				return poteza;

@@ -5,7 +5,7 @@ import logika.Igra;
 import javax.swing.WindowConstants;
 
 import GUI.*;
-
+import inteligenca.OceniPozicijo;
 public class Ogrodje{
 
 	public static void main(String[] args) throws Exception{
@@ -22,17 +22,16 @@ public class Ogrodje{
 //		glavnoOkno.setVisible(true);
 //		Vodja.okno=glavnoOkno;
 		//////////////////////////////////////////////////////////////
-		Igra a=new Igra(3);
+		Igra a=new Igra(4);
 		a.odigraj(new Koordinati(0,0));
-		a.odigraj(new Koordinati(1,0));
-		a.odigraj(new Koordinati(0,1));
-		a.odigraj(new Koordinati(1,1));
+		a.odigraj(new Koordinati(3,1));
+		a.odigraj(new Koordinati(2,2));
+		a.odigraj(new Koordinati(1,3));
 		a.odigraj(new Koordinati(0,2));
-		a.odigraj(new Koordinati(1,2));
-		System.out.println(a);
-		if(a.getZmagovalec()!=null){
-			System.out.println(a.getZmagovalec());
-		}
+//		a.odigraj(new Koordinati(1,2));
+		
+		
+		
 		Igra b=new Igra(5);
 		int[][]q= {{2,2,2,2,1},{2,1,2,2,2},{1,1,1,2,1},{1,1,1,1,1},{2,1,2,2,1}};
 		while(true) {
@@ -72,18 +71,28 @@ public class Ogrodje{
 
 
 		/////////////////////////////////////////////////////
-
+//
 		Igra d=new Igra(3);
 
 		Platno platno=new Platno(900,600);
-		platno.nastaviIgro(d);
+		platno.nastaviIgro(a);
 		Okno okno1=new Okno("HEX",platno);
 		okno1.pack();
 		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);
-		Vodja.okno=okno1;
-		Vodja.igra=d;
-		Vodja.igramo();
+		
+		int y = OceniPozicijo.najkrajsaPotLevoDesno(a);
+		System.out.println("ocena modri je " + y);
+		int z = OceniPozicijo.najkrajsaPotGorDol(a);
+		System.out.println("ocena rdeci je " + z);
+		int x = OceniPozicijo.oceniPozicijo(a, a.naPotezi);
+		System.out.println("ocena je " + x);
+		
+		
+//		Vodja.okno=okno1;
+//		Vodja.igra=d;
+//		Vodja.igramo();
+//		
 
 	}
 }

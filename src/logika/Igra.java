@@ -32,6 +32,7 @@ public class Igra{
 	//naredi kopijo že obstoječe igre, zaradi minimaxa
 	public Igra(Igra igra) {
 		this.N = igra.N;
+		this.naPotezi = Igralec.PRVI;
 		this.plosca = new Polje[N][N];
 		for (int i = 0; i < igra.N; i++) {
 			for (int j = 0; j<igra.N; j++) {
@@ -65,7 +66,7 @@ public class Igra{
 		}
 	}
 
-//	public final ArrayList<Koordinati> zmagovalnaPolja = new ArrayList<Koordinati>();
+
 	public ArrayList<Koordinati> zmagovalnaPot() throws Exception{
 		if(getStanje()==Stanje.V_TEKU){
 			throw new Exception("Nihče ni zmagal, zmagovalna pot ne more obstajati");
@@ -80,7 +81,7 @@ public class Igra{
 			while(!bfs.isEmpty()){
 				Koordinati k=bfs.poll();
 				if(k.getY()==N-1){
-//					urediPoljaCol();
+
 					ArrayList<Koordinati> ans=new ArrayList<Koordinati>();
 					while(true){
 						ans.add(k);
@@ -103,7 +104,7 @@ public class Igra{
 						if(plosca[x2][y2]==Polje.PRVI&&prev[x2][y2]==null){
 							bfs.add(new Koordinati(x2,y2));
 
-//							zmagovalnaPolja.add(new Koordinati(x2, x2));
+						
 
 							prev[x2][y2]=k;
 						}
@@ -156,7 +157,7 @@ public class Igra{
 	}
 	public Igralec getZmagovalec(){
 
-		//		zmagovalnaPolja.clear();
+
 
 		//Preverimo ce je zgornji rob povezan s spodnjim
 		//To bo za igralca_1 ki postavlja v stringu recimo X. 
@@ -166,7 +167,7 @@ public class Igra{
 			if(plosca[col][0]==Polje.PRVI){
 				bfs.add(new Koordinati(col,0));
 
-//				zmagovalnaPolja.add(new Koordinati(0,col));
+
 
 				done[col][0]=true;
 			}
@@ -174,7 +175,6 @@ public class Igra{
 		while(!bfs.isEmpty()){
 			Koordinati k=bfs.poll();
 			if(k.getY()==N-1){
-//				urediPoljaCol();
 				return Igralec.PRVI;
 			}
 
@@ -189,7 +189,7 @@ public class Igra{
 					if(plosca[x2][y2]==Polje.PRVI&&!done[x2][y2]){
 						bfs.add(new Koordinati(x2,y2));
 
-//						zmagovalnaPolja.add(new Koordinati(x2, x2));
+
 
 						done[x2][y2]=true;
 					}
