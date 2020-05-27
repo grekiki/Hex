@@ -18,7 +18,7 @@ private static int NAJDALJSA = 999;
 //			return ocena;
 //		}else {
 //			ocena = najkrajsaPotGorDol(igra) - najkrajsaPotLevoDesno(igra);
-//			return ocena;racun
+//			return ocena;
 //		}
 		int najkrajsaPrvi = INF;
 		int najkrajsaDrugi = INF;
