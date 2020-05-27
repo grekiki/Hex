@@ -55,12 +55,9 @@ public class Vodja{
 		}
 	}
 
-<<<<<<< HEAD
-	public static Inteligenca racunalnikovaInteligenca=new Inteligenca("Spam");
+	//public static Inteligenca racunalnikovaInteligenca=new Inteligenca("Spam");
 	public static Minimax minimax = new Minimax(5);
-=======
-	public static Inteligenca racunalnikovaInteligenca=new Inteligenca();
->>>>>>> branch 'master' of git@github.com:grekiki/Hex.git
+
 
 	public static void igrajRacunalnikovoPotezo(){
 		SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){

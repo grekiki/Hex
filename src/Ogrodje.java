@@ -1,6 +1,7 @@
 import splosno.Koordinati;
 import vodja.Vodja;
 import logika.Igra;
+import logika.Igralec;
 
 import javax.swing.WindowConstants;
 
@@ -81,12 +82,10 @@ public class Ogrodje{
 		okno1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		okno1.setVisible(true);
 		
-		int y = OceniPozicijo.najkrajsaPotLevoDesno(a);
-		System.out.println("ocena modri je " + y);
-		int z = OceniPozicijo.najkrajsaPotGorDol(a);
-		System.out.println("ocena rdeci je " + z);
-		int x = OceniPozicijo.oceniPozicijo(a, a.naPotezi);
-		System.out.println("ocena je " + x);
+		System.out.println(a.plosca[1][3]);
+		System.out.println(a);
+		int x = OceniPozicijo.oceniPozicijo(a, Igralec.PRVI);
+		System.out.println(x);
 		
 		
 //		Vodja.okno=okno1;
