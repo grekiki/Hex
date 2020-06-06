@@ -84,7 +84,7 @@ public class Minimax extends KdoIgra {
 			int velikost = moznePoteze.size();
 			if (velikost > 100) sito = 10;
 			else if (velikost > 50) sito = 6;
-			else if (velikost > 20) sito = 3;
+			else if (velikost > 15) sito = 3;
 			else sito = 1;
 			for (int i = 0; i<velikost;i++) {
 				if (i % sito == 0) {
