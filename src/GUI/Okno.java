@@ -5,7 +5,7 @@ import javax.swing.*;
 import logika.Stanje;
 import vodja.Vodja;
 import logika.Igra;
-import logika.Igralec;
+
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -22,7 +22,7 @@ import javax.swing.JColorChooser;
 	//Statusna vrstica v spodnjem delu okna
 	private JLabel status;
 
-	// Izbire v menujih
+	// Izbire v meniju
 	private JMenuItem igraClovekRacunalnik;
 	private JMenuItem igraRacunalnikClovek;
 	private JMenuItem igraClovekClovek;
@@ -30,7 +30,9 @@ import javax.swing.JColorChooser;
 	private JMenuItem velikostPlosce;
 	private JMenuItem barvaPrvega;
 	private JMenuItem barvaDrugega;
-	private JMenuItem pametNasprotnika;
+	private JMenuItem random;
+	private JMenuItem srednje;
+	private JMenuItem tezko;
 	private JMenuItem zamikNasprotnika;
 	private JMenuItem ime1;
 	private JMenuItem ime2;
@@ -82,10 +84,21 @@ import javax.swing.JColorChooser;
 
 		JMenu nasprotnik=new JMenu("Nasprotnik");
 		nastavitve.add(nasprotnik);
-
-		pametNasprotnika=new JMenuItem("Algoritem");
+		
+		JMenu pametNasprotnika=new JMenu("Algoritem");
 		nasprotnik.add(pametNasprotnika);
-		pametNasprotnika.addActionListener(this);
+		
+		random = new JMenuItem("Naključno");
+		pametNasprotnika.add(random);
+		random.addActionListener(this);
+		
+		srednje = new JMenuItem("Srednje težko (ni primerno za polja večja od 5*5)");
+		pametNasprotnika.add(srednje);
+		srednje.addActionListener(this);
+		
+		tezko = new JMenuItem("Težko");
+		pametNasprotnika.add(tezko);
+		tezko.addActionListener(this);
 
 		zamikNasprotnika=new JMenuItem("Zamik");
 		nasprotnik.add(zamikNasprotnika);
@@ -107,9 +120,7 @@ import javax.swing.JColorChooser;
 
 		// igralno polje
 		setLayout(new GridBagLayout());
-//		JPanel wrapperPanel = new JPanel(new GridBagLayout());
-//		wrapperPanel.setBackground(Color.white);
-//		wrapperPanel.add(platno);
+
 
 		GridBagConstraints polje_layout=new GridBagConstraints();
 		polje_layout.gridx=0;
@@ -207,8 +218,17 @@ import javax.swing.JColorChooser;
 				   JOptionPane.showMessageDialog(this, "Neveljavna izbira!");
 				}
 		}}
+		else if (e.getSource() == random) {
+			Vodja.nasprotnikRandom();
+		}
+		else if (e.getSource() == srednje) {
+			Vodja.nasprotnikSrednje();
+		}
+		else if (e.getSource() == tezko) {
+			Vodja.nasprotnikTezko();
+		}
 		osveziGUI();
-		//TODO
+
 	}
 	public void preimenuj(boolean b, String niz) {
 		if (niz != null && !niz.equals("")) {

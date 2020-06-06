@@ -1,7 +1,8 @@
 package inteligenca;
 
 import java.util.ArrayList;
-import java.util.List;
+
+
 import logika.Igra;
 import logika.Igralec;
 import logika.Polje;
@@ -11,17 +12,11 @@ import splosno.Koordinati;
 public class Minimax extends KdoIgra {
 		
 		private static final int ZMAGA = Integer.MAX_VALUE; // vrednost zmage
-		private static final int ZGUBA = -ZMAGA;  // vrednost izgube
+		private static final int ZGUBA = -ZMAGA;  // vrednost zgube
 	
 		
 		private int globina;
-		
-		public Minimax () {
-			super("Skupina instruktorjev"); 
-			this.globina = 9;
-			//Razen prve poteze, alphabeta rabi manj kot 5 sekund
-		}
-		
+				
 		public Minimax (int globina) {
 			super("alphabeta globina " + globina);
 			this.globina = globina;
@@ -29,25 +24,21 @@ public class Minimax extends KdoIgra {
 		
 		public Koordinati izberiPotezo (Igra igra) {
 			// Na začetku alpha = ZGUBA in beta = ZMAGA
-			System.out.println("izberi poteza...");
 			return alphabetaPoteze(igra, this.globina, ZGUBA, ZMAGA, igra.naPotezi).poteza;
 		}
 		
 		public static OcenjenaPoteza alphabetaPoteze(Igra igra, int globina, int alpha, int beta, Igralec jaz) {
-			System.out.println("trentutno sem na globini " + globina);
 			int ocena;
 			// Če sem računalnik, maksimiramo oceno z začetno oceno ZGUBA
 			// Če sem pa človek, minimiziramo oceno z začetno oceno ZMAGA
 			if (igra.naPotezi == jaz) {ocena = ZGUBA;} else {ocena = ZMAGA;}
 			ArrayList<Koordinati> moznePoteze = moznePoteze(igra);
 			
-			Koordinati kandidat = moznePoteze.get(0); // Možno je, da se ne spremini vrednost kanditata. Zato ne more biti null.
+			Koordinati kandidat = moznePoteze.get(0);
 			
 			for (Koordinati p: moznePoteze) {
 				Igra kopijaIgre = new Igra(igra);
-				System.out.println(kopijaIgre.naPotezi);
 				kopijaIgre.odigraj(p);
-				
 				int ocenap;
 				switch (kopijaIgre.getStanje()) {
 				case ZMAGA_PRVI: ocenap = (jaz == Igralec.PRVI ? ZMAGA : ZGUBA); break;
@@ -59,25 +50,22 @@ public class Minimax extends KdoIgra {
 				}
 				
 				if (igra.naPotezi == jaz) { // Maksimiramo oceno
-					if (ocenap > ocena) { // mora biti > namesto >=
+					if (ocenap > ocena) { 
 						ocena = ocenap;
 						kandidat = p;
 						alpha = Math.max(alpha,ocena);
-						System.out.println(kandidat + " alpha: " + ocena + ";");
 					}
 				} else { // igra.naPotezi() != jaz, torej minimiziramo oceno
 					if (ocenap < ocena) { // mora biti < namesto <=
 						ocena = ocenap;
 						kandidat = p;
 						beta = Math.min(beta, ocena);
-						System.out.println(kandidat + " beta: " + ocena + ";");
 					}	
 				}
-				if (alpha >= beta) // Izstopimo iz "for loop", saj ostale poteze ne pomagajo
-					System.out.println(kandidat + " koncno: " + ocena + ";");
+				if (alpha >= beta){ // Izstopimo iz "for loop", saj ostale poteze ne pomagajo
 					return new OcenjenaPoteza (kandidat, ocena);
 			}
-			System.out.println(kandidat + " koncno: " + ocena + ";");
+			}
 			return new OcenjenaPoteza (kandidat, ocena);
 		}
 
@@ -90,5 +78,19 @@ public class Minimax extends KdoIgra {
 				}
 			}
 		}
-			return moznePoteze;}
+			//sito zmanjšuje število pregledanih potez
+			ArrayList<Koordinati> manjPotez=new ArrayList<Koordinati>();
+			int sito;
+			int velikost = moznePoteze.size();
+			if (velikost > 100) sito = 10;
+			else if (velikost > 50) sito = 6;
+			else if (velikost > 20) sito = 3;
+			else sito = 1;
+			for (int i = 0; i<velikost;i++) {
+				if (i % sito == 0) {
+					manjPotez.add(moznePoteze.get(i));
+				}
+			}
+			return manjPotez;}
+
 }

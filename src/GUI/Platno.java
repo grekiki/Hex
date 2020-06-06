@@ -61,10 +61,7 @@ import java.awt.event.*;
 
 		int sx=getWidth()/2;
 		int sy=getHeight()/2;
-		//x0 = paddingx + notranji
-		//y0 = paddingy + zunanji
-		// samo zunanji, debelinaRoba in padding se spreminjata
-		//int zunanji = 40; //odvisen naj bo od velikosti platna
+
 		zunanjiPolmer=(priporocenaSirina/((this.igra.N*3/2)+4))/2;
 		notranjiPolmer=(int)Math.round(zunanjiPolmer*Math.sqrt(3)/2);  // polmer šestkotniku očrtane in včrtane krožnice
 		debelinaRoba=priporocenaSirina/igra.N/20;
@@ -109,9 +106,7 @@ import java.awt.event.*;
 		int y14=(int)Math.round(paddingy+zunanjiPolmer+a*1.5*zunanjiPolmer-notranjiPolmer*v[1]);
 		//g2.fillOval(x14, y14, 10, 10);
 
-		int x21=(int)Math.round(paddingx+(2*b+1)*notranjiPolmer+(a*notranjiPolmer)+2*notranjiPolmer);
-		int y21=(int)Math.round(paddingy+zunanjiPolmer+a*1.5*zunanjiPolmer);
-		//g2.fillOval(x21, y21, 10, 10);
+
 		int x23=(int)Math.round(paddingx+(2*b+1)*notranjiPolmer+(a*notranjiPolmer)+2*notranjiPolmer*v[0]);
 		int y23=(int)Math.round(paddingy+zunanjiPolmer+a*1.5*zunanjiPolmer-2*notranjiPolmer*v[1]);
 		//g2.fillOval(x23, y23, 10, 10);
@@ -126,9 +121,7 @@ import java.awt.event.*;
 		int y34=(int)Math.round(paddingy+zunanjiPolmer+b*1.5*zunanjiPolmer+2*notranjiPolmer*v[1]-notranjiPolmer*v[1]);
 		//g2.fillOval(x34, y34, 10, 10);
 
-		int x41=(int)Math.round(paddingx+(2*a+1)*notranjiPolmer+(b*notranjiPolmer)-2*notranjiPolmer);
-		int y41=(int)Math.round(paddingy+zunanjiPolmer+b*1.5*zunanjiPolmer);
-		//g2.fillOval(x41, y41, 10, 10);
+
 		int x42=(int)Math.round(paddingx+(2*a+1)*notranjiPolmer+(b*notranjiPolmer)-2*notranjiPolmer*v[0]);
 		int y42=(int)Math.round(paddingy+zunanjiPolmer+b*1.5*zunanjiPolmer+2*notranjiPolmer*v[1]);
 		//g2.fillOval(x42, y42, 10, 10);
@@ -188,15 +181,6 @@ import java.awt.event.*;
 				else
 					barva=this.barvaPrazno; // dodati še za zmagovalno vrstico
 
-//				// test
-//				if(i==0&&j==0)
-//					System.out.println("x0 = "+y+", y0 = "+x+",");
-//				else if(i==0&&j==this.igra.plosca.length-1)
-//					System.out.println("x0 = "+y+", yN = "+x+",");
-//				else if(i==this.igra.plosca.length-1&&j==0)
-//					System.out.println("xN = "+y+", y0 = "+x+",");
-//				else if(i==this.igra.plosca.length-1&&j==this.igra.plosca.length-1)
-//					System.out.println("xN = "+y+", yN = "+x+",");
 
 				sestkotnik(y,x,(int)Math.round(zunanjiPolmer+debelinaRoba/2),debelinaRoba,g2,this.barvaRoba,barva);
 			}
@@ -208,7 +192,7 @@ import java.awt.event.*;
 						sestkotnik(yz, xz,(int)Math.round(zunanjiPolmer+debelinaRoba/2),debelinaRoba,g2,this.barvaRoba,this.barvaZmaga);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 			}
@@ -228,7 +212,6 @@ import java.awt.event.*;
 			xKoordinate2[i]=(int)Math.round(y+(r-debelinaRoba)*Math.sin(i*2.0*Math.PI/6));
 		}
 		g.setColor(rob);
-		//g.drawPolygon(xKoordinate, yKoordinate, 6);
 		g.fillPolygon(xKoordinate,yKoordinate,6);
 		g.setColor(notranjost);
 		g.fillPolygon(xKoordinate2,yKoordinate2,6);
@@ -245,7 +228,6 @@ import java.awt.event.*;
 	}
 
 	@Override public void mouseClicked(MouseEvent e){
-		//System.out.println(Vodja.clovekNaVrsti);
 		if(igra.getStanje()!=Stanje.V_TEKU) {
 			konecIgre=true;
 		}
@@ -257,7 +239,6 @@ import java.awt.event.*;
 					int sx=(int)Math.round(paddingx+(2*j+1)*notranjiPolmer+(i*notranjiPolmer));
 					int sy=(int)Math.round(paddingy+zunanjiPolmer+i*1.5*zunanjiPolmer);
 					if(getHex(sy,sx,notranjiPolmer).contains(new Point(x,y))){
-						System.out.println("zadel si "+j+", "+i+".");
 						this.igra.odigraj(new Koordinati(j, i));
 						break;
 					}

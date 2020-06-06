@@ -6,11 +6,11 @@ import logika.Igra;
 import logika.Polje;
 import splosno.Koordinati;
 
+// predstavlja enostavno naključno verzijo nasprotnika
 public class Inteligenca extends splosno.KdoIgra{
 	String ime;
 	public Inteligenca(){
 		super("Hex1234");
-		System.out.println("Narejena je inteligenca: "+super.ime);
 	}
 	public Koordinati izberiPotezo(Igra igra){
 		ArrayList<Koordinati> možnePoteze=new ArrayList<Koordinati>();
