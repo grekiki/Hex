@@ -31,8 +31,7 @@ import javax.swing.JColorChooser;
 	private JMenuItem barvaPrvega;
 	private JMenuItem barvaDrugega;
 	private JMenuItem random;
-	private JMenuItem srednje;
-	private JMenuItem tezko;
+	private JMenuItem minimax;
 	private JMenuItem zamikNasprotnika;
 	private JMenuItem ime1;
 	private JMenuItem ime2;
@@ -92,13 +91,9 @@ import javax.swing.JColorChooser;
 		pametNasprotnika.add(random);
 		random.addActionListener(this);
 		
-		srednje = new JMenuItem("Srednje težko (ni primerno za polja večja od 5*5)");
-		pametNasprotnika.add(srednje);
-		srednje.addActionListener(this);
-		
-		tezko = new JMenuItem("Težko");
-		pametNasprotnika.add(tezko);
-		tezko.addActionListener(this);
+		minimax = new JMenuItem("Minimax");
+		pametNasprotnika.add(minimax);
+		minimax.addActionListener(this);
 
 		zamikNasprotnika=new JMenuItem("Zamik");
 		nasprotnik.add(zamikNasprotnika);
@@ -221,12 +216,10 @@ import javax.swing.JColorChooser;
 		else if (e.getSource() == random) {
 			Vodja.nasprotnikRandom();
 		}
-		else if (e.getSource() == srednje) {
-			Vodja.nasprotnikSrednje();
+		else if (e.getSource() == minimax) {
+			Vodja.nasprotnikMinimax();
 		}
-		else if (e.getSource() == tezko) {
-			Vodja.nasprotnikTezko();
-		}
+
 		osveziGUI();
 
 	}

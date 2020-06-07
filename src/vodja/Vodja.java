@@ -24,7 +24,7 @@ public class Vodja{
 	
 	public static int zamik = 2;
 	
-	public static  VrstaRacunalnika vrsta = VrstaRacunalnika.RANDOM; 
+	public static  VrstaRacunalnika vrsta = VrstaRacunalnika.MINIMAX; 
 
 	public static void igramoNovoIgro(Igra i){
 		igra=i;
@@ -58,7 +58,7 @@ public class Vodja{
 	}
 
 	public static Inteligenca racunalnikovaInteligenca=new Inteligenca();
-	public static Minimax minimax = new Minimax(4);
+	public static Minimax minimax = new Minimax(2);
 
 
 	//odvisno od tega, kateri algoritem smo izbrali, računalnik drugače igra
@@ -83,7 +83,7 @@ public class Vodja{
 			}
 		};
 		worker.execute();}
-		else if (vrsta == VrstaRacunalnika.SREDNJE) {
+		else  {
 			SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
 				@Override protected Koordinati doInBackground(){
 					Koordinati poteza = minimax.izberiPotezo(igra);
@@ -100,28 +100,8 @@ public class Vodja{
 
 				}
 			};
-			worker.execute();}
-		else {
-//			SwingWorker<Koordinati,Void> worker=new SwingWorker<Koordinati,Void>(){
-//				@Override protected Koordinati doInBackground(){
-//					Koordinati poteza =                                             <---------------------TUKAJ NAPIŠI SVOJO KODO :)
-//					try {TimeUnit.SECONDS.sleep(zamik);} catch (Exception e) {};
-//					return poteza;
-//				}
-//				@Override protected void done(){
-//					Koordinati poteza=null;
-//					try{
-//						poteza = get();
-//					}catch(Exception e){};
-//					igra.odigraj(poteza);
-//					igramo();
-//
-//				}
-//			};
-//			worker.execute();
-			//TODO
+			worker.execute();
 		}
-		
 		okno.osveziGUI();
 	}
 
@@ -140,10 +120,8 @@ public static void nastaviZamik(int n) {
 public static void nasprotnikRandom() {
 	vrsta = VrstaRacunalnika.RANDOM;
 	}
-public static void nasprotnikSrednje() {
-	vrsta = VrstaRacunalnika.SREDNJE;
+public static void nasprotnikMinimax() {
+	vrsta = VrstaRacunalnika.MINIMAX;
 	}
-public static void nasprotnikTezko() {
-	vrsta = VrstaRacunalnika.TEZKO;
-	}
+
 }

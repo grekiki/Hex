@@ -9,6 +9,7 @@ import logika.Polje;
 import splosno.KdoIgra;
 import splosno.Koordinati;
 
+// minimax oziroma alfabeta
 public class Minimax extends KdoIgra {
 		
 		private static final int ZMAGA = Integer.MAX_VALUE; // vrednost zmage
@@ -68,7 +69,7 @@ public class Minimax extends KdoIgra {
 			}
 			return new OcenjenaPoteza (kandidat, ocena);
 		}
-
+		// seznam praznih polj
 		private static ArrayList<Koordinati> moznePoteze(Igra igra){
 			ArrayList<Koordinati> moznePoteze=new ArrayList<Koordinati>();
 			for (int i=0;i<igra.N;i++) {
@@ -82,7 +83,7 @@ public class Minimax extends KdoIgra {
 			ArrayList<Koordinati> manjPotez=new ArrayList<Koordinati>();
 			int sito;
 			int velikost = moznePoteze.size();
-			if (velikost > 100) sito = 10;
+			if (velikost > 100) sito = 15;
 			else if (velikost > 50) sito = 6;
 			else if (velikost > 15) sito = 3;
 			else sito = 1;

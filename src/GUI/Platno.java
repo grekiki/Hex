@@ -54,14 +54,12 @@ import java.awt.event.*;
 	@Override protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
-		/////
-
 		int priporocenaSirina=Math.min(getWidth(),(int)getHeight()*3/2);
-
-
 		int sx=getWidth()/2;
 		int sy=getHeight()/2;
 
+		// odvisno od velikosti plošče in okna se spreminja velikost šestkotnikov
+		
 		zunanjiPolmer=(priporocenaSirina/((this.igra.N*3/2)+4))/2;
 		notranjiPolmer=(int)Math.round(zunanjiPolmer*Math.sqrt(3)/2);  // polmer šestkotniku očrtane in včrtane krožnice
 		debelinaRoba=priporocenaSirina/igra.N/20;
@@ -179,7 +177,7 @@ import java.awt.event.*;
 				else if(igra.plosca[j][i]==Polje.DRUGI)
 					barva=this.barvaIgralca2;
 				else
-					barva=this.barvaPrazno; // dodati še za zmagovalno vrstico
+					barva=this.barvaPrazno; 
 
 
 				sestkotnik(y,x,(int)Math.round(zunanjiPolmer+debelinaRoba/2),debelinaRoba,g2,this.barvaRoba,barva);
