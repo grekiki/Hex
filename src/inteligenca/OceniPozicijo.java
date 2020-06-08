@@ -19,8 +19,8 @@ public class OceniPozicijo {
 		int[][] grafDrugi = narediGraf(igra, false);
 		for (int i = 0; i < igra.N;i++) {
 			for (int j = 0; j<igra.N; j++){
-				int novaPrvi = floydWarshall(grafPrvi, igra)[i*igra.N][j*igra.N+(igra.N-1)];
-				int novaDrugi = floydWarshall(grafDrugi, igra)[i][igra.N * (igra.N-1) + j];
+				int novaPrvi = floydWarshall(grafPrvi, igra)[i*igra.N][j*igra.N+(igra.N-1)]; // zanimajo nas le poti od zgoraj do spodaj	
+				int novaDrugi = floydWarshall(grafDrugi, igra)[i][igra.N * (igra.N-1) + j];  // oziroma od levo do desno
 				if (novaPrvi < najkrajsaPrvi) najkrajsaPrvi = novaPrvi;
 				if (novaDrugi < najkrajsaDrugi) najkrajsaDrugi = novaDrugi;
 			}
@@ -76,7 +76,7 @@ public class OceniPozicijo {
 		int i = -1;
     	if (prvi) {
     		for (int x1 = 0; x1< igra.N; x1++) {
-    			for (int y1 = 0; y1 < igra.N; y1++) {
+    			for (int y1 = 0; y1 < igra.N; y1++) { // algoritem bi pospešili, če bi upoštevali, da je razdalja od A do B enaka razdalji od B do A
     				i++;
     				int j = -1;
     				for (int x2 = 0; x2<igra.N;x2++) {
@@ -116,7 +116,7 @@ public class OceniPozicijo {
     			}
     		}
     	}
-    	
+    	// ponovitev za drugega igralca
     		else {
 		for (int x1 = 0; x1< igra.N; x1++) {
 			for (int y1 = 0; y1 < igra.N; y1++) {
