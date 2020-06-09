@@ -5,7 +5,7 @@ import logika.Igralec;
 
 public class OceniPozicijo {
 
-
+	final static int INF = 99999;
 	
 	public static int oceniPozicijo(Igra igra, Igralec jaz) {
 
@@ -38,7 +38,7 @@ public class OceniPozicijo {
 	
 	
 
-	final static int INF = 99999;
+	
 	 
 	// Floyd-Warshall algoritem
 	
